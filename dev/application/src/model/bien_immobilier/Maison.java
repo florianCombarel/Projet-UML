@@ -13,7 +13,7 @@ public class Maison extends BienImmobilier {
 
 	public Maison(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo,
 			Personne seller, double livingSurface, int nbRoom, int nbFloor, String heatingSystem) {
-		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo, seller);
+		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
 		this.livingSurface = livingSurface;
 		this.nbRoom = nbRoom;

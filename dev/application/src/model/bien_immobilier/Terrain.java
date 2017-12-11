@@ -11,7 +11,7 @@ public class Terrain extends BienImmobilier {
 
 	public Terrain(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo,
 			Personne seller, double surfaceArea, double facadeLength) {
-		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo, seller);
+		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
 		this.surfaceArea = surfaceArea;
 		this.facadeLength = facadeLength;

@@ -12,7 +12,7 @@ public class Appartement extends BienImmobilier {
 
 	public Appartement(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo,
 			Personne seller, int nbRoom, int floor, double monthlySubs) {
-		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo, seller);
+		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
 		this.nbRoom = nbRoom;
 		this.floor = floor;
