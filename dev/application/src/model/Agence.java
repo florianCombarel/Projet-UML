@@ -24,7 +24,7 @@ public class Agence {
 		this.biens = mapBienImmo;
 	}
 	
-	public void addMapPersonne(Personne p) {
+	public void addClients(Personne p) {
 		Random randomGenerator = new Random();
 		int randomNumber = randomGenerator.nextInt(Integer.MAX_VALUE);
 		boolean trouve = false;
@@ -34,10 +34,55 @@ public class Agence {
 			}
 		}
 		if(trouve) {
-			addMapPersonne(p);
+			addClients(p);
 		} else {
 			this.clients.put(randomNumber, p);
 		}
+	}
+	
+	public void addBiens(BienImmobilier b) {
+		Random randomGenerator = new Random();
+		int randomNumber = randomGenerator.nextInt(Integer.MAX_VALUE);
+		boolean trouve = false;
+		for(HashMap.Entry<Integer, BienImmobilier> entry : this.biens.entrySet()) {
+			if(randomNumber == entry.getKey()) {
+				trouve = true;
+			}
+		}
+		if(trouve) {
+			addBiens(b);
+		} else {
+			this.biens.put(randomNumber, b);
+		}
+	}
+	
+	public void removeClients(Personne p) {
+		Integer delete = null;
+		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
+			if(entry.getValue().equals(p)) {
+				delete = entry.getKey();
+			}
+		}
+		this.clients.remove(delete);
+	}
+	
+	public void removeBiens(BienImmobilier b) {
+		Integer delete = null;
+		for(HashMap.Entry<Integer, BienImmobilier> entry : this.biens.entrySet()) {
+			if(entry.getValue().equals(b)) {
+				delete = entry.getKey();
+			}
+		}
+		this.biens.remove(delete);
+	}
+	
+	public String getPersonne(String nom) {
+		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
+			if(entry.getValue().getName() == nom) {
+				return "zizi";
+			}
+		}
+		return "null";
 	}
 
 	public String getNom() {
