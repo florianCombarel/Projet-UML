@@ -9,48 +9,48 @@ import model.Voeu;
 
 public abstract class Personne {
 	
-	private String name;
-	private String address;
+	private String nom;
+	private String adresse;
 	private String telephone;
 	private String mail;
-	private HashSet<Mandat> setMandat;
-	private HashSet<PromesseVente> setPromesseVente;
-	private HashSet<RendezVous> setRendezVous;
+	private HashSet<Mandat> biensEnVente;
+	private HashSet<PromesseVente> biensAchetes;
+	private HashSet<RendezVous> biensVisites;
 	private HashSet<Voeu> setVoeu;
 	
 	public Personne(String name, String address, String telephone, String mail) {
-		this.name = name;
-		this.address = address;
+		this.nom = name;
+		this.adresse = address;
 		this.telephone = telephone;
 		this.mail = mail;
-		this.setMandat = new HashSet<>();
-		this.setPromesseVente = new HashSet<>();
-		this.setRendezVous = new HashSet<>();
+		this.biensEnVente = new HashSet<>();
+		this.biensVisites = new HashSet<>();
+		this.biensAchetes = new HashSet<>();
 		this.setVoeu = new HashSet<>();
 	}
 
-	public HashSet<Mandat> getSetMandat() {
-		return setMandat;
+	public HashSet<Mandat> getbiensEnVente() {
+		return biensEnVente;
 	}
 
-	public void setSetMandat(HashSet<Mandat> setMandat) {
-		this.setMandat = setMandat;
+	public void setbiensEnVente(HashSet<Mandat> setMandat) {
+		this.biensEnVente = setMandat;
 	}
 
-	public HashSet<PromesseVente> getSetPromesseVente() {
-		return setPromesseVente;
+	public HashSet<RendezVous> getbiensVisites() {
+		return biensVisites;
 	}
 
-	public void setSetPromesseVente(HashSet<PromesseVente> setPromesseVente) {
-		this.setPromesseVente = setPromesseVente;
+	public void setbiensVisites(HashSet<RendezVous> setPromesseVente) {
+		this.biensVisites = setPromesseVente;
 	}
 
-	public HashSet<RendezVous> getSetRendezVous() {
-		return setRendezVous;
+	public HashSet<PromesseVente> getbiensAchetes() {
+		return biensAchetes;
 	}
 
-	public void setSetRendezVous(HashSet<RendezVous> setRendezVous) {
-		this.setRendezVous = setRendezVous;
+	public void setSetRendezVous(HashSet<PromesseVente> setRendezVous) {
+		this.biensAchetes = setRendezVous;
 	}
 
 	public HashSet<Voeu> getSetVoeu() {
@@ -62,19 +62,19 @@ public abstract class Personne {
 	}
 
 	public String getName() {
-		return name;
+		return nom;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.nom = name;
 	}
 
 	public String getAddress() {
-		return address;
+		return adresse;
 	}
 
 	public void setAddress(String adress) {
-		this.address = adress;
+		this.adresse = adress;
 	}
 
 	public String getTelephone() {

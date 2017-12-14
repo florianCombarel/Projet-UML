@@ -2,19 +2,19 @@ package model.personne;
 
 public class PersonnePhysique extends Personne {
 	
-	private String first_name;
+	private String prenom;
 	
 	public PersonnePhysique(String name, String first_name,String adress, String telephone, String mail) {
 		super(name, adress, telephone, mail);
 		// TODO Auto-generated constructor stub
-		this.first_name = first_name;
+		this.prenom = first_name;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getPrenom() {
+		return prenom;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setPrenom(String first_name) {
+		this.prenom = first_name;
 	}
 }

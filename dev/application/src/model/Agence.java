@@ -8,60 +8,89 @@ import model.personne.Personne;
 
 public class Agence {
 	
-	private String name;
-	private HashMap<Integer, Personne> mapPersonne;
-	private HashMap<Integer, BienImmobilier> mapBienImmo;
+	private String nom;
+	private HashMap<Integer, Personne> clients;
+	private HashMap<Integer, BienImmobilier> biens;
 	
-	public Agence(String name) {
-		this.name = name;
-		this.mapPersonne = new HashMap<>();
-		this.mapBienImmo = new HashMap<>();
+	public Agence(String nom) {
+		this.nom = nom;
+		this.clients = new HashMap<>();
+		this.biens = new HashMap<>();
 	}
 	
 	public Agence(String name, HashMap<Integer, Personne> mapPersonne, HashMap<Integer, BienImmobilier> mapBienImmo) {
-		this.name = name;
-		this.mapPersonne = mapPersonne;
-		this.mapBienImmo = mapBienImmo;
+		this.nom = name;
+		this.clients = mapPersonne;
+		this.biens = mapBienImmo;
 	}
 	
-	public void addMapPersonne(Personne p) {
+	public void addClients(Personne p) {
 		Random randomGenerator = new Random();
 		int randomNumber = randomGenerator.nextInt(Integer.MAX_VALUE);
 		boolean trouve = false;
-		for(HashMap.Entry<Integer, Personne> entry : this.mapPersonne.entrySet()) {
+		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
 			if(randomNumber == entry.getKey()) {
 				trouve = true;
 			}
 		}
 		if(trouve) {
-			addMapPersonne(p);
+			addClients(p);
 		} else {
-			this.mapPersonne.put(randomNumber, p);
+			this.clients.put(randomNumber, p);
 		}
 	}
-
-	public String getName() {
-		return name;
+	
+	public void addBiens(BienImmobilier b) {
+		Random randomGenerator = new Random();
+		int randomNumber = randomGenerator.nextInt(Integer.MAX_VALUE);
+		boolean trouve = false;
+		for(HashMap.Entry<Integer, BienImmobilier> entry : this.biens.entrySet()) {
+			if(randomNumber == entry.getKey()) {
+				trouve = true;
+			}
+		}
+		if(trouve) {
+			addBiens(b);
+		} else {
+			this.biens.put(randomNumber, b);
+		}
+	}
+	
+	public void removeClients(Personne p) {
+		Integer delete = null;
+		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
+			if(entry.getValue().equals(p)) {
+				delete = entry.getKey();
+			}
+		}
+		this.clients.remove(delete);
+	}
+	
+	public void removeBiens(BienImmobilier b) {
+		Integer delete = null;
+		for(HashMap.Entry<Integer, BienImmobilier> entry : this.biens.entrySet()) {
+			if(entry.getValue().equals(b)) {
+				delete = entry.getKey();
+			}
+		}
+		this.biens.remove(delete);
+	}
+	
+	public String getPersonne(String nom) {
+		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
+			if(entry.getValue().getName() == nom) {
+				return "zizi";
+			}
+		}
+		return "null";
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getNom() {
+		return nom;
 	}
 
-	public HashMap<Integer, Personne> getMapPersonne() {
-		return mapPersonne;
-	}
-
-	public void setMapPersonne(HashMap<Integer, Personne> mapPersonne) {
-		this.mapPersonne = mapPersonne;
-	}
-
-	public HashMap<Integer, BienImmobilier> getMapBienImmo() {
-		return mapBienImmo;
-	}
-
-	public void setMapBienImmo(HashMap<Integer, BienImmobilier> mapBienImmo) {
-		this.mapBienImmo = mapBienImmo;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 }
