@@ -1,6 +1,11 @@
 package controller;
 
+import java.util.Date;
+
 import model.Agence;
+import model.Mandat;
+import model.bien_immobilier.Appartement;
+import model.bien_immobilier.BienImmobilier;
 import model.personne.Personne;
 import model.personne.PersonnePhysique;
 
@@ -19,6 +24,9 @@ public class AgenceTest {
 		System.out.println(agence.getPersonne("Combarel"));
 		agence.removeClients(p1);
 		System.out.println(agence.getPersonne("Lejeune"));
+		
+		BienImmobilier b1 = new Appartement("Toulouse", "Nord",10000.0, new Date(2018,11,18), new Date(2018,11,18), 3,8,500.2);
+		Mandat m1 = new Mandat(b1,p2,new Date(2018,11,18));
 		
 	}
 

@@ -9,8 +9,7 @@ public class Terrain extends BienImmobilier {
 	private double surfaceAuSol;
 	private double longueurFacade;
 
-	public Terrain(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo,
-			Personne seller, double surfaceArea, double facadeLength) {
+	public Terrain(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo, double surfaceArea, double facadeLength) {
 		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
 		this.surfaceAuSol = surfaceArea;

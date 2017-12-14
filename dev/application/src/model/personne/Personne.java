@@ -6,6 +6,7 @@ import model.Mandat;
 import model.PromesseVente;
 import model.RendezVous;
 import model.Voeu;
+import model.bien_immobilier.BienImmobilier;
 
 public abstract class Personne {
 	
@@ -28,6 +29,42 @@ public abstract class Personne {
 		this.biensAchetes = new HashSet<>();
 		this.setVoeu = new HashSet<>();
 	}
+	
+	public void addMandat(Mandat m) {
+		this.biensEnVente.add(m);
+	}
+	
+	public void addPromesseVente(PromesseVente pv) {
+		this.biensAchetes.add(pv);
+	}
+	
+	public void addRendezVous(RendezVous rv) {
+		this.biensVisites.add(rv);
+	}
+	
+	public void removeMandat(Mandat m) {
+		this.biensEnVente.remove(m);
+	}
+	
+	public void removePromesseVente(PromesseVente pv) {
+		this.biensVisites.remove(pv);
+	}
+	
+	public void removeRendezVous(RendezVous rv) {
+		this.biensAchetes.remove(rv);
+	}
+	
+	public Mandat getMandat(BienImmobilier b) {
+		Mandat m = null;
+		for(Mandat mandat : this.biensEnVente) {
+			if(mandat.getBienEnVente().equals(b)) {
+				m = mandat;
+			}
+		}
+		return m;
+	}
+	
+	/*Getters and Setters*/
 
 	public HashSet<Mandat> getbiensEnVente() {
 		return biensEnVente;

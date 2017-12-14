@@ -11,8 +11,7 @@ public class Maison extends BienImmobilier {
 	private int nbEtage;
 	private String systemeChauffage;
 
-	public Maison(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo,
-			Personne seller, double livingSurface, int nbRoom, int nbFloor, String heatingSystem) {
+	public Maison(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo, double livingSurface, int nbRoom, int nbFloor, String heatingSystem) {
 		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
 		this.surfaceHabitable = livingSurface;
