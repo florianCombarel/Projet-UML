@@ -6,41 +6,42 @@ import model.personne.Personne;
 
 public class Appartement extends BienImmobilier {
 	
-	private int nbRoom;
-	private int floor;
-	private double monthlySubs;
+	private int nbPiece;
+	private int etage;
+	private double chargeMensuelle;
 
 	public Appartement(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo,
 			Personne seller, int nbRoom, int floor, double monthlySubs) {
 		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
-		this.nbRoom = nbRoom;
-		this.floor = floor;
-		this.monthlySubs = monthlySubs;
+		this.nbPiece = nbRoom;
+		this.etage = floor;
+		this.chargeMensuelle = monthlySubs;
+	}
+	
+	public int getNbPiece() {
+		return nbPiece;
 	}
 
-	public int getNbRoom() {
-		return nbRoom;
+	public void setNbPiece(int nbPiece) {
+		this.nbPiece = nbPiece;
 	}
 
-	public void setNbRoom(int nbRoom) {
-		this.nbRoom = nbRoom;
+	public int getEtage() {
+		return etage;
 	}
 
-	public int getFloor() {
-		return floor;
+	public void setEtage(int etage) {
+		this.etage = etage;
 	}
 
-	public void setFloor(int floor) {
-		this.floor = floor;
+	public double getChargeMensuelle() {
+		return chargeMensuelle;
 	}
 
-	public double getMonthlySubs() {
-		return monthlySubs;
+	public void setChargeMensuelle(double chargeMensuelle) {
+		this.chargeMensuelle = chargeMensuelle;
 	}
 
-	public void setMonthlySubs(double monthlySubs) {
-		this.monthlySubs = monthlySubs;
-	}
 
 }

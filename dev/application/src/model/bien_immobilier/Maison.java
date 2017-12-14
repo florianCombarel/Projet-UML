@@ -6,51 +6,50 @@ import model.personne.Personne;
 
 public class Maison extends BienImmobilier {
 	
-	private double livingSurface;
-	private int nbRoom;
-	private int nbFloor;
-	private String heatingSystem;
+	private double surfaceHabitable;
+	private int nbPiece;
+	private int nbEtage;
+	private String systemeChauffage;
 
 	public Maison(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo,
 			Personne seller, double livingSurface, int nbRoom, int nbFloor, String heatingSystem) {
 		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
-		this.livingSurface = livingSurface;
-		this.nbRoom = nbRoom;
-		this.nbFloor = nbFloor;
-		this.heatingSystem = heatingSystem;
+		this.surfaceHabitable = livingSurface;
+		this.nbPiece = nbRoom;
+		this.nbEtage = nbFloor;
+		this.systemeChauffage = heatingSystem;
 	}
 
-	public double getLivingSurface() {
-		return livingSurface;
+	public double getSurfaceHabitable() {
+		return surfaceHabitable;
 	}
 
-	public void setLivingSurface(double livingSurface) {
-		this.livingSurface = livingSurface;
+	public void setSurfaceHabitable(double surfaceHabitable) {
+		this.surfaceHabitable = surfaceHabitable;
 	}
 
-	public int getNbRoom() {
-		return nbRoom;
+	public int getNbPiece() {
+		return nbPiece;
 	}
 
-	public void setNbRoom(int nbRoom) {
-		this.nbRoom = nbRoom;
+	public void setNbPiece(int nbPiece) {
+		this.nbPiece = nbPiece;
 	}
 
-	public int getNbFloor() {
-		return nbFloor;
+	public int getNbEtage() {
+		return nbEtage;
 	}
 
-	public void setNbFloor(int nbFloor) {
-		this.nbFloor = nbFloor;
+	public void setNbEtage(int nbEtage) {
+		this.nbEtage = nbEtage;
 	}
 
-	public String getHeatingSystem() {
-		return heatingSystem;
+	public String getSystemeChauffage() {
+		return systemeChauffage;
 	}
 
-	public void setHeatingSystem(String heatingSystem) {
-		this.heatingSystem = heatingSystem;
+	public void setSystemeChauffage(String systemeChauffage) {
+		this.systemeChauffage = systemeChauffage;
 	}
-
 }

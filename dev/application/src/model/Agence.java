@@ -8,27 +8,27 @@ import model.personne.Personne;
 
 public class Agence {
 	
-	private String name;
-	private HashMap<Integer, Personne> mapPersonne;
-	private HashMap<Integer, BienImmobilier> mapBienImmo;
+	private String nom;
+	private HashMap<Integer, Personne> clients;
+	private HashMap<Integer, BienImmobilier> biens;
 	
-	public Agence(String name) {
-		this.name = name;
-		this.mapPersonne = new HashMap<>();
-		this.mapBienImmo = new HashMap<>();
+	public Agence(String nom) {
+		this.nom = nom;
+		this.clients = new HashMap<>();
+		this.biens = new HashMap<>();
 	}
 	
 	public Agence(String name, HashMap<Integer, Personne> mapPersonne, HashMap<Integer, BienImmobilier> mapBienImmo) {
-		this.name = name;
-		this.mapPersonne = mapPersonne;
-		this.mapBienImmo = mapBienImmo;
+		this.nom = name;
+		this.clients = mapPersonne;
+		this.biens = mapBienImmo;
 	}
 	
 	public void addMapPersonne(Personne p) {
 		Random randomGenerator = new Random();
 		int randomNumber = randomGenerator.nextInt(Integer.MAX_VALUE);
 		boolean trouve = false;
-		for(HashMap.Entry<Integer, Personne> entry : this.mapPersonne.entrySet()) {
+		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
 			if(randomNumber == entry.getKey()) {
 				trouve = true;
 			}
@@ -36,32 +36,16 @@ public class Agence {
 		if(trouve) {
 			addMapPersonne(p);
 		} else {
-			this.mapPersonne.put(randomNumber, p);
+			this.clients.put(randomNumber, p);
 		}
 	}
 
-	public String getName() {
-		return name;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public HashMap<Integer, Personne> getMapPersonne() {
-		return mapPersonne;
-	}
-
-	public void setMapPersonne(HashMap<Integer, Personne> mapPersonne) {
-		this.mapPersonne = mapPersonne;
-	}
-
-	public HashMap<Integer, BienImmobilier> getMapBienImmo() {
-		return mapBienImmo;
-	}
-
-	public void setMapBienImmo(HashMap<Integer, BienImmobilier> mapBienImmo) {
-		this.mapBienImmo = mapBienImmo;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 }

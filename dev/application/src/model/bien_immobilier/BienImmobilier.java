@@ -6,50 +6,50 @@ import model.personne.Personne;
 
 public abstract class BienImmobilier {
 	
-	private String address;
-	private String exposition;
-	private double demandPrice;
-	private Date dateSellingDemand;
+	private String adresse;
+	private String orientation;
+	private double prixDemande;
+	private Date dateVenteVoulue;
 	private Date dateDispo;
 	
 	public BienImmobilier(String address, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo) {
-		this.address = address;
-		this.exposition = exposition;
-		this.demandPrice = demandPrice;
-		this.dateSellingDemand = dateSellingDemand;
+		this.adresse = address;
+		this.orientation = exposition;
+		this.prixDemande = demandPrice;
+		this.dateVenteVoulue = dateSellingDemand;
 		this.dateDispo = dateDispo;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getAdresse() {
+		return adresse;
 	}
 
-	public void setAddress(String adress) {
-		this.address = adress;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
-	public String getExposition() {
-		return exposition;
+	public String getOrientation() {
+		return orientation;
 	}
 
-	public void setExposition(String exposition) {
-		this.exposition = exposition;
+	public void setOrientation(String orientation) {
+		this.orientation = orientation;
 	}
 
-	public double getDemandPrice() {
-		return demandPrice;
+	public double getPrixDemande() {
+		return prixDemande;
 	}
 
-	public void setDemandPrice(double demandPrice) {
-		this.demandPrice = demandPrice;
+	public void setPrixDemande(double prixDemande) {
+		this.prixDemande = prixDemande;
 	}
 
-	public Date getDateSellingDemand() {
-		return dateSellingDemand;
+	public Date getDateVenteVoulue() {
+		return dateVenteVoulue;
 	}
 
-	public void setDateSellingDemand(Date dateSellingDemand) {
-		this.dateSellingDemand = dateSellingDemand;
+	public void setDateVenteVoulue(Date dateVenteVoulue) {
+		this.dateVenteVoulue = dateVenteVoulue;
 	}
 
 	public Date getDateDispo() {

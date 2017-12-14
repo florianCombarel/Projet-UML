@@ -6,31 +6,31 @@ import model.personne.Personne;
 
 public class Terrain extends BienImmobilier {
 	
-	private double surfaceArea;
-	private double facadeLength;
+	private double surfaceAuSol;
+	private double longueurFacade;
 
 	public Terrain(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo,
 			Personne seller, double surfaceArea, double facadeLength) {
 		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
-		this.surfaceArea = surfaceArea;
-		this.facadeLength = facadeLength;
+		this.surfaceAuSol = surfaceArea;
+		this.longueurFacade = facadeLength;
 	}
 
-	public double getSurfaceArea() {
-		return surfaceArea;
+	public double getSurfaceAuSol() {
+		return surfaceAuSol;
 	}
 
-	public void setSurfaceArea(double surfaceArea) {
-		this.surfaceArea = surfaceArea;
+	public void setSurfaceAuSol(double surfaceAuSol) {
+		this.surfaceAuSol = surfaceAuSol;
 	}
 
-	public double getFacadeLength() {
-		return facadeLength;
+	public double getLongueurFacade() {
+		return longueurFacade;
 	}
 
-	public void setFacadeLength(double facadeLength) {
-		this.facadeLength = facadeLength;
+	public void setLongueurFacade(double longueurFacade) {
+		this.longueurFacade = longueurFacade;
 	}
 
 }
