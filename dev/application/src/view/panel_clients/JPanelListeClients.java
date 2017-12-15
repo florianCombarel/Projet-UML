@@ -2,6 +2,7 @@ package view.panel_clients;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
@@ -11,19 +12,25 @@ import java.awt.Dimension;
 public class JPanelListeClients extends JPanel {
 	
 	private JButton button_ajouterClient;
-	private JTextField textfield_title;
+	private JTable table_liste;
 
 	public JPanelListeClients() {
 		
 		
 		this.setLayout(new BorderLayout());
 		this.setButton_ajouterClient();
-		this.setTextfield_Title();
-		this.add(this.textfield_title, BorderLayout.NORTH);
+		this.setTable_liste();
 		this.add(this.button_ajouterClient, BorderLayout.SOUTH);
+		this.add(this.table_liste);
 		
 		
 		this.setBackground(Color.GRAY);
+	}
+
+	public void setTable_liste() {
+		// TODO Auto-generated method stub
+		this.table_liste = new JTable();
+		
 	}
 
 	public JButton getButton_ajouterClient() {
@@ -37,8 +44,8 @@ public class JPanelListeClients extends JPanel {
 		button_ajouterClient.setPreferredSize(d);
 	}
 	
-	public void setTextfield_Title() {
-		this.textfield_title = new JTextField("Liste des clients");
+	public JTable getTable_liste() {
+		return this.table_liste;
 	}
 
 }
