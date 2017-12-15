@@ -8,7 +8,7 @@ import model.bien_immobilier.Appartement;
 import model.bien_immobilier.BienImmobilier;
 import model.personne.Personne;
 import model.personne.PersonnePhysique;
-import view.Window;
+import view.Application;
 
 public class AgenceTest {
 
@@ -32,7 +32,8 @@ public class AgenceTest {
 		Mandat m2 = p2.getMandat(b1);
 		System.out.println(m2.getVendeur().getName());*/
 		
-		Window w = new Window();
+		Application appli = new Application();
+		
 	}
 
 }
