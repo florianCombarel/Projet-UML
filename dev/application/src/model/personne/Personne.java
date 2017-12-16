@@ -64,6 +64,16 @@ public abstract class Personne {
 		return m;
 	}
 	
+	/*public PromesseVente getPromesseVente(BienImmobilier b) {
+		PromesseVente pv = null;
+		for(PromesseVente promessevente : this.biensAchetes) {
+			if(promessevente.getBienEnVente().equals(b)) {
+				pv = promessevente;
+			}
+		}
+		return pv;
+	}*/
+	
 	/*Getters and Setters*/
 
 	public HashSet<Mandat> getbiensEnVente() {
