@@ -13,18 +13,33 @@ public class JPanelListeClients extends JPanel {
 	
 	private JButton button_ajouterClient;
 	private JTable table_liste;
+	private JButton button_title_liste;
 
 	public JPanelListeClients() {
 		
 		
 		this.setLayout(new BorderLayout());
 		this.setButton_ajouterClient();
+		this.setButton_Title_liste();
 		this.setTable_liste();
 		this.add(this.button_ajouterClient, BorderLayout.SOUTH);
+		this.add(this.button_title_liste, BorderLayout.NORTH);
 		this.add(this.table_liste);
 		
 		
 		this.setBackground(Color.GRAY);
+	}
+
+	public JButton getButton_Title_liste() {
+		return button_title_liste;
+	}
+
+	public void setButton_Title_liste() {
+		this.button_title_liste = new JButton("Liste des Clients");
+		this.button_title_liste.setEnabled(false);
+		Dimension d =button_ajouterClient.getPreferredSize();
+		d.width = 150;
+		button_ajouterClient.setPreferredSize(d);
 	}
 
 	public void setTable_liste() {
