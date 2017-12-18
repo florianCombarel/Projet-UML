@@ -6,6 +6,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import model.Agence;
+
 public class JPanelClients extends JPanel {
 	
 	private JPanelFicheClient panel_ficheClient;
