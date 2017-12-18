@@ -10,13 +10,14 @@ import model.personne.Personne;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.util.HashMap;
 
 public class JPanelListeClients extends JPanel {
 	
 	private JButton button_ajouterClient;
-	private JTable table_liste;
 	private JButton button_title_liste;
+	private JPanel panel_liste;
 
 	public JPanelListeClients(HashMap<Integer, Personne> personnes) {
 		
@@ -24,11 +25,10 @@ public class JPanelListeClients extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.setButton_ajouterClient();
 		this.setButton_Title_liste();
-		this.setTable_liste(personnes);
+		this.setPanel_liste(personnes);
 		this.add(this.button_ajouterClient, BorderLayout.SOUTH);
 		this.add(this.button_title_liste, BorderLayout.NORTH);
-		this.add(this.table_liste);
-		
+		this.add(this.panel_liste, BorderLayout.CENTER);
 		
 		this.setBackground(Color.GRAY);
 	}
@@ -45,18 +45,18 @@ public class JPanelListeClients extends JPanel {
 		button_ajouterClient.setPreferredSize(d);
 	}
 
-	public void setTable_liste(HashMap<Integer, Personne> personnes) {
+	public void setPanel_liste(HashMap<Integer, Personne> personnes) {
 		// TODO Auto-generated method stub
-		Object[][] data = {};
-		String title[] = {"Liste des clients"};
+		this.panel_liste = new JPanel();
+		/*this.panel_liste.setLayout(new GridLayout(personnes.size(), 1));
 		
-		int i = 0;
+		
 		for(HashMap.Entry<Integer, Personne> entry : personnes.entrySet()) {
-			data[i][0] = new JButton(entry.getValue().getName());
-		}
+			JButton but = new JButton(entry.getValue().getName());
+			but.setPreferredSize(this.button_ajouterClient.getPreferredSize());
+			this.panel_liste.add(but);
+		}*/
 		
-		
-		this.table_liste = new JTable(data, title);
 		
 		
 	}
@@ -72,8 +72,8 @@ public class JPanelListeClients extends JPanel {
 		button_ajouterClient.setPreferredSize(d);
 	}
 	
-	public JTable getTable_liste() {
-		return this.table_liste;
+	public JPanel getPanel_liste() {
+		return this.panel_liste;
 	}
 
 }

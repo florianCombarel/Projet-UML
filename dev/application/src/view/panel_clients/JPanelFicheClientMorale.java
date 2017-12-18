@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class JPanelFicheClient extends JPanel {
+public class JPanelFicheClientMorale extends JPanel {
 	
 	private GridBagLayout gbl;
 	
@@ -27,12 +27,14 @@ public class JPanelFicheClient extends JPanel {
 	private JLabel label_mail;
 	private JTextArea textArea_mail;
 	
-	public JPanelFicheClient() {
-		
+	private JLabel label_formeJuridique;
+	private JTextArea textArea_formeJuridique;
+	
+	private JLabel label_numSiren;
+	private JTextArea textArea_numSiren;
+	
+	public JPanelFicheClientMorale() {
 		this.setGbl();
-		
-		
-		
 		this.setBackground(Color.CYAN);
 	}
 

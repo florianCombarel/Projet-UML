@@ -12,11 +12,11 @@ import model.personne.Personne;
 
 public class JPanelClients extends JPanel {
 	
-	private JPanelFicheClient panel_ficheClient;
+	private JPanelFicheClientMorale panel_ficheClient;
 	private JPanelListeClients panel_listeClients;
 	
 	public JPanelClients(HashMap<Integer, Personne> personnes) {
-		this.panel_ficheClient = new JPanelFicheClient();
+		this.panel_ficheClient = new JPanelFicheClientMorale();
 		this.panel_listeClients = new JPanelListeClients(personnes);
 		
 		
