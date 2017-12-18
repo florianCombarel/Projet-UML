@@ -19,13 +19,13 @@ public class JPanelListeClients extends JPanel {
 	private JButton button_title_liste;
 	private JPanel panel_liste;
 
-	public JPanelListeClients(HashMap<Integer, Personne> personnes) {
+	public JPanelListeClients() {
 		
 		
 		this.setLayout(new BorderLayout());
 		this.setButton_ajouterClient();
 		this.setButton_Title_liste();
-		this.setPanel_liste(personnes);
+		this.setPanel_liste();
 		this.add(this.button_ajouterClient, BorderLayout.SOUTH);
 		this.add(this.button_title_liste, BorderLayout.NORTH);
 		this.add(this.panel_liste, BorderLayout.CENTER);
@@ -45,7 +45,7 @@ public class JPanelListeClients extends JPanel {
 		button_ajouterClient.setPreferredSize(d);
 	}
 
-	public void setPanel_liste(HashMap<Integer, Personne> personnes) {
+	public void setPanel_liste() {
 		// TODO Auto-generated method stub
 		this.panel_liste = new JPanel();
 		/*this.panel_liste.setLayout(new GridLayout(personnes.size(), 1));

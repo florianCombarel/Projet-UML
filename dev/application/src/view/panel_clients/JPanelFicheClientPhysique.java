@@ -1,7 +1,5 @@
 package view.panel_clients;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,12 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class JPanelFicheClientMorale extends JPanel {
-	
-	private GridBagLayout gbl;
+public class JPanelFicheClientPhysique extends JPanel {
 	
 	private JLabel label_nom;
 	private JTextArea textArea_nom;
+	
+	private JLabel label_prenom;
+	private JTextArea textArea_prenom;
 	
 	private JLabel label_adresse;
 	private JTextArea textArea_adresse;
@@ -27,27 +26,15 @@ public class JPanelFicheClientMorale extends JPanel {
 	private JLabel label_mail;
 	private JTextArea textArea_mail;
 	
-	private JLabel label_formeJuridique;
-	private JTextArea textArea_formeJuridique;
-	
-	private JLabel label_numSiren;
-	private JTextArea textArea_numSiren;
-	
-	public JPanelFicheClientMorale() {
-		this.setGbl();
-		this.setBackground(Color.CYAN);
-	}
-
-	public GridBagLayout getGbl() {
-		return gbl;
-	}
-
-	public void setGbl() {
+	public JPanelFicheClientPhysique() {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		this.setLabel_nom();
 		this.setTextArea_nom("");
+		
+		this.setLabel_prenom();
+		this.setTextArea_prenom("");
 		
 		this.setLabel_adresse();
 		this.setTextArea_adresse("");
@@ -57,12 +44,6 @@ public class JPanelFicheClientMorale extends JPanel {
 		
 		this.setLabel_mail();
 		this.setTextArea_mail("");
-		
-		this.setLabel_formeJuridique();
-		this.setTextArea_formeJuridique("");
-		
-		this.setLabel_numSiren();
-		this.setTextArea_numSiren("");
 		
 		gbc.insets = new Insets(1,1,1,1);
 		
@@ -75,157 +56,108 @@ public class JPanelFicheClientMorale extends JPanel {
 		
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		this.add(this.label_adresse, gbc);
+		this.add(this.label_prenom, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 1;
+		this.add(this.label_prenom, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		this.add(this.label_adresse, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 2;
 		this.add(this.textArea_adresse, gbc);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		this.add(this.label_telephone, gbc);
 		gbc.gridx = 1;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		this.add(this.textArea_telephone, gbc);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		this.add(this.label_mail, gbc);
 		gbc.gridx = 1;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		this.add(this.textArea_mail, gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 4;
-		this.add(this.label_formeJuridique, gbc);
-		gbc.gridx = 1;
-		gbc.gridy = 4;
-		this.add(this.textArea_formeJuridique, gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 5;
-		this.add(this.label_numSiren, gbc);
-		gbc.gridx = 1;
-		gbc.gridy = 5;
-		this.add(this.textArea_numSiren, gbc);
-		
 	}
 	
 	
-
-	public JLabel getLabel_formeJuridique() {
-		return label_formeJuridique;
-	}
-
-	public void setLabel_formeJuridique() {
-		this.label_formeJuridique = new JLabel("Forme juridique : ");
-	}
-
-	public JTextArea getTextArea_formeJuridique() {
-		return textArea_formeJuridique;
-	}
-
-	public void setTextArea_formeJuridique(String formeJuridique) {
-		this.textArea_formeJuridique = new JTextArea(formeJuridique);
-		Dimension d = this.textArea_formeJuridique.getPreferredSize();
-		d.width = 150;
-		this.textArea_formeJuridique.setPreferredSize(d);
-	}
-
-	public JLabel getLabel_numSiren() {
-		return label_numSiren;
-	}
-
-	public void setLabel_numSiren() {
-		this.label_numSiren = new JLabel("Numéro SIREN : ");
-	}
-
-	public JTextArea getTextArea_numSiren() {
-		return textArea_numSiren;
-	}
-
-	public void setTextArea_numSiren(String numSiren) {
-		this.textArea_numSiren = new JTextArea(numSiren);
-		Dimension d = this.textArea_numSiren.getPreferredSize();
-		d.width = 150;
-		this.textArea_numSiren.setPreferredSize(d);
-	}
-
 	public JLabel getLabel_nom() {
 		return label_nom;
 	}
-
 	public void setLabel_nom() {
 		this.label_nom = new JLabel("Nom : ");
 	}
-
 	public JTextArea getTextArea_nom() {
 		return textArea_nom;
 	}
-
 	public void setTextArea_nom(String nom) {
 		this.textArea_nom = new JTextArea(nom);
 		Dimension d = this.textArea_nom.getPreferredSize();
 		d.width = 150;
 		this.textArea_nom.setPreferredSize(d);
 	}
-
+	public JLabel getLabel_prenom() {
+		return label_prenom;
+	}
+	public void setLabel_prenom() {
+		this.label_prenom = new JLabel("Prénom : ");
+	}
+	public JTextArea getTextArea_prenom() {
+		return textArea_prenom;
+	}
+	public void setTextArea_prenom(String prenom) {
+		this.textArea_prenom = new JTextArea(prenom);
+		Dimension d = this.textArea_prenom.getPreferredSize();
+		d.width = 150;
+		this.textArea_prenom.setPreferredSize(d);
+	}
 	public JLabel getLabel_adresse() {
 		return label_adresse;
 	}
-
 	public void setLabel_adresse() {
 		this.label_adresse = new JLabel("Adresse : ");
 	}
-
 	public JTextArea getTextArea_adresse() {
 		return textArea_adresse;
 	}
-
 	public void setTextArea_adresse(String adresse) {
 		this.textArea_adresse = new JTextArea(adresse);
 		Dimension d = this.textArea_adresse.getPreferredSize();
 		d.width = 150;
 		this.textArea_adresse.setPreferredSize(d);
 	}
-
 	public JLabel getLabel_telephone() {
 		return label_telephone;
 	}
-
 	public void setLabel_telephone() {
 		this.label_telephone = new JLabel("Téléphone : ");
 	}
-
 	public JTextArea getTextArea_telephone() {
 		return textArea_telephone;
 	}
-
 	public void setTextArea_telephone(String telephone) {
 		this.textArea_telephone = new JTextArea(telephone);
 		Dimension d = this.textArea_telephone.getPreferredSize();
 		d.width = 150;
 		this.textArea_telephone.setPreferredSize(d);
 	}
-
 	public JLabel getLabel_mail() {
 		return label_mail;
 	}
-
 	public void setLabel_mail() {
 		this.label_mail = new JLabel("Email : ");
 	}
-
 	public JTextArea getTextArea_mail() {
 		return textArea_mail;
 	}
-
 	public void setTextArea_mail(String mail) {
 		this.textArea_mail = new JTextArea(mail);
 		Dimension d = this.textArea_mail.getPreferredSize();
 		d.width = 150;
 		this.textArea_mail.setPreferredSize(d);
 	}
-	
-	
 
 }

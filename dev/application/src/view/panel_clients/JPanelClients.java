@@ -12,14 +12,12 @@ import model.personne.Personne;
 
 public class JPanelClients extends JPanel {
 	
-	private JPanelFicheClientMorale panel_ficheClient;
+	private JPanelFicheClientPhysique panel_ficheClient;
 	private JPanelListeClients panel_listeClients;
 	
-	public JPanelClients(HashMap<Integer, Personne> personnes) {
-		this.panel_ficheClient = new JPanelFicheClientMorale();
-		this.panel_listeClients = new JPanelListeClients(personnes);
-		
-		
+	public JPanelClients() {
+		this.panel_ficheClient = new JPanelFicheClientPhysique();
+		this.panel_listeClients = new JPanelListeClients();
 		
 		this.setLayout(new BorderLayout());
 		this.add(this.panel_listeClients, BorderLayout.WEST);
