@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.Date;
-
 import model.Agence;
 import model.Mandat;
 import model.bien_immobilier.Appartement;
