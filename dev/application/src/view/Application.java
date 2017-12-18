@@ -7,6 +7,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import model.Agence;
 import view.panel_clients.JPanelClients;
 
 public class Application extends JFrame {
@@ -15,7 +16,7 @@ public class Application extends JFrame {
 	private JPanel panel_principal;
 	private JPanelClients panel_clients;
 	
-	public Application() {
+	public Application(Agence agence) {
 		this.setTitle("Application Agence Immobilière");
 		this.setSize(1000, 800);
 		
@@ -25,7 +26,7 @@ public class Application extends JFrame {
 		this.setPanel_principal();
 		this.add(panel_principal);
 		
-		this.panel_clients = new JPanelClients();
+		this.panel_clients = new JPanelClients(agence.getClients());
 		this.add(panel_clients);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -93,4 +93,21 @@ public class Agence {
 		this.nom = nom;
 	}
 
+	public HashMap<Integer, Personne> getClients() {
+		return clients;
+	}
+
+	public void setClients(HashMap<Integer, Personne> clients) {
+		this.clients = clients;
+	}
+
+	public HashMap<Integer, BienImmobilier> getBiens() {
+		return biens;
+	}
+
+	public void setBiens(HashMap<Integer, BienImmobilier> biens) {
+		this.biens = biens;
+	}
+	
+
 }

@@ -1,8 +1,11 @@
 package view.panel_clients;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +29,21 @@ public class JPanelFicheClient extends JPanel {
 	
 	public JPanelFicheClient() {
 		
+		this.setGbl();
+		
+		
+		
+		this.setBackground(Color.CYAN);
+	}
+
+	public GridBagLayout getGbl() {
+		return gbl;
+	}
+
+	public void setGbl() {
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		
 		this.setLabel_nom();
 		this.setTextArea_nom("");
 		
@@ -38,27 +56,36 @@ public class JPanelFicheClient extends JPanel {
 		this.setLabel_mail();
 		this.setTextArea_mail("");
 		
-		this.add(this.label_nom);
-		this.add(this.textArea_nom);
+		gbc.insets = new Insets(1,1,1,1);
 		
-		this.add(this.label_adresse);
-		this.add(this.textArea_adresse);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		this.add(this.label_nom, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		this.add(this.textArea_nom, gbc);
 		
-		this.add(this.label_telephone);
-		this.add(this.textArea_telephone);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		this.add(this.label_adresse, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		this.add(this.textArea_adresse, gbc);
 		
-		this.add(this.label_mail);
-		this.add(this.textArea_mail);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		this.add(this.label_telephone, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		this.add(this.textArea_telephone, gbc);
 		
-		this.setBackground(Color.CYAN);
-	}
-
-	public GridBagLayout getGbl() {
-		return gbl;
-	}
-
-	public void setGbl() {
-		this.gbl = new GridBagLayout();
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		this.add(this.label_mail, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		this.add(this.textArea_mail, gbc);
+		
 	}
 
 	public JLabel getLabel_nom() {
