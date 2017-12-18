@@ -12,6 +12,7 @@ public class Console {
 		Scanner clavier = new Scanner(System.in);
 		int valClavier = 0;
 		while(valClavier != 6){
+			System.out.println("\n- Vous êtes dans le menu principal de l'application -");
 			System.out.println("[1] Menu de gestion des clients\n"
 					+ "[2] Menu de gestion des biens immobiliers\n"
 					+ "[3] Menu de gestion des mandats\n"
@@ -22,7 +23,7 @@ public class Console {
 				System.out.print("Entrer un nombre correspondant à l'action à effectuer : ");
 				try{
 					valClavier = clavier.nextInt();
-				}catch(InputMismatchException e){
+				}catch(Exception e){
 					clavier.nextLine();
 				}
 			}while(valClavier < 0 || valClavier > 7);
