@@ -2,6 +2,7 @@ package model.bien_immobilier;
 
 import java.util.Date;
 
+import model.Mandat;
 import model.personne.Personne;
 
 public class Maison extends BienImmobilier {
@@ -11,8 +12,8 @@ public class Maison extends BienImmobilier {
 	private int nbEtage;
 	private String systemeChauffage;
 
-	public Maison(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo, double livingSurface, int nbRoom, int nbFloor, String heatingSystem) {
-		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
+	public Maison(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo, Mandat mandat, double livingSurface, int nbRoom, int nbFloor, String heatingSystem) {
+		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo, mandat);
 		// TODO Auto-generated constructor stub
 		this.surfaceHabitable = livingSurface;
 		this.nbPiece = nbRoom;

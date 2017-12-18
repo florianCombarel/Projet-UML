@@ -21,14 +21,13 @@ public abstract class BienImmobilier {
 	private HashSet<RendezVous> rendezVous;
 	private HashSet<Publicite> publicites;
 	
-	public BienImmobilier(String address, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo, Mandat mandat, PromesseVente promesseVente) {
+	public BienImmobilier(String address, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo, Mandat mandat) {
 		this.adresse = address;
 		this.orientation = exposition;
 		this.prixDemande = demandPrice;
 		this.dateVenteVoulue = dateSellingDemand;
 		this.dateDispo = dateDispo;
 		this.mandat = mandat;
-		this.promesseVente = promesseVente;
 		this.rendezVous = new HashSet<>();
 		this.publicites = new HashSet<>();
 	}
