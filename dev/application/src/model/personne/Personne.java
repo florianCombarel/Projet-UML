@@ -42,37 +42,55 @@ public abstract class Personne {
 		this.biensVisites.add(rv);
 	}
 	
+	public void addVoeu(Voeu v) {
+		this.setVoeu.add(v);
+	}
+	
 	public void removeMandat(Mandat m) {
 		this.biensEnVente.remove(m);
 	}
 	
 	public void removePromesseVente(PromesseVente pv) {
-		this.biensVisites.remove(pv);
+		this.biensAchetes.remove(pv);
 	}
 	
 	public void removeRendezVous(RendezVous rv) {
-		this.biensAchetes.remove(rv);
+		this.biensVisites.remove(rv);
+	}
+	
+	public void removeVoeu(Voeu v) {
+		this.setVoeu.remove(v);
 	}
 	
 	public Mandat getMandat(BienImmobilier b) {
 		Mandat m = null;
 		for(Mandat mandat : this.biensEnVente) {
-			if(mandat.getBienEnVente().equals(b)) {
+			if(mandat.getBienEnVente() == b) {
 				m = mandat;
 			}
 		}
 		return m;
 	}
 	
-	/*public PromesseVente getPromesseVente(BienImmobilier b) {
+	public PromesseVente getPromesseVente(BienImmobilier b) {
 		PromesseVente pv = null;
 		for(PromesseVente promessevente : this.biensAchetes) {
-			if(promessevente.getBienEnVente().equals(b)) {
+			if(promessevente.getBienAchete().equals(b)) {
 				pv = promessevente;
 			}
 		}
 		return pv;
-	}*/
+	}
+	
+	public RendezVous getRendezVous(BienImmobilier b) {
+		RendezVous pv = null;
+		for(RendezVous rdv : this.biensVisites) {
+			if(rdv.getBienVisite().equals(b)) {
+				pv = rdv;
+			}
+		}
+		return pv;
+	}
 	
 	/*Getters and Setters*/
 
