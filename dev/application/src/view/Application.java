@@ -53,5 +53,4 @@ public class Application extends JFrame {
 		this.panel_principal.setBackground(Color.GREEN);
 		
 	}
-
 }
