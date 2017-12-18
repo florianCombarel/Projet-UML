@@ -76,13 +76,13 @@ public class Agence {
 		this.biens.remove(delete);
 	}
 	
-	public String getPersonne(String nom) {
+	public Personne getPersonne(String nom) {
 		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
 			if(entry.getValue().getName() == nom) {
-				return "zizi";
+				return entry.getValue();
 			}
 		}
-		return "null";
+		return null;
 	}
 
 	public String getNom() {
