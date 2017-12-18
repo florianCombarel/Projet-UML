@@ -11,8 +11,8 @@ public class Appartement extends BienImmobilier {
 	private int etage;
 	private double chargeMensuelle;
 
-	public Appartement(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo, Mandat mandat, int nbRoom, int floor, double monthlySubs) {
-		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo, mandat);
+	public Appartement(String adress, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo, int nbRoom, int floor, double monthlySubs) {
+		super(adress, exposition, demandPrice, dateSellingDemand, dateDispo);
 		// TODO Auto-generated constructor stub
 		this.nbPiece = nbRoom;
 		this.etage = floor;
