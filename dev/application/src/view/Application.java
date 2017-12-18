@@ -26,7 +26,7 @@ public class Application extends JFrame {
 		this.setPanel_principal();
 		this.add(panel_principal);
 		
-		this.panel_clients = new JPanelClients(agence.getClients());
+		this.panel_clients = new JPanelClients();
 		this.add(panel_clients);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
