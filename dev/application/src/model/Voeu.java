@@ -1,5 +1,7 @@
 package model;
 
+import model.personne.Personne;
+
 public class Voeu {
 	
 	private String typeBien;
@@ -7,8 +9,9 @@ public class Voeu {
 	private String localisation;
 	private double surfaceAuSol;
 	private int nbPiece;
+	private Personne client;
 	
-	public Voeu(String typeBien, double prixSouhaite, String localisation, double surfaceAuSol, int nbPiece){
+	public Voeu(String typeBien, double prixSouhaite, String localisation, double surfaceAuSol, int nbPiece, Personne client){
 		switch(typeBien){
 		case "terrain":
 			this.prixSouhaite = Math.abs(prixSouhaite);
@@ -25,6 +28,7 @@ public class Voeu {
 			this.nbPiece = nbPiece;
 			break;
 		}
+		this.client = client;
 	}
 
 	public String getTypeBien() {
@@ -65,5 +69,13 @@ public class Voeu {
 
 	public void setNbPiece(int nbPiece) {
 		this.nbPiece = nbPiece;
+	}
+	
+	public void setClient(Personne client){
+		this.client = client;
+	}
+	
+	public Personne getClient(){
+		return this.client;
 	}
 }

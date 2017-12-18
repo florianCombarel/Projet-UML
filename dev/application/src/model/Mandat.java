@@ -12,9 +12,11 @@ public class Mandat {
 	private Date date;
 	
 	public Mandat(BienImmobilier bienEnVente, Personne vendeur, Date date) {
-		this.bienEnVente = bienEnVente;
-		this.vendeur = vendeur;
-		this.date = date;
+		if(date.after(new Date())){
+			this.bienEnVente = bienEnVente;
+			this.vendeur = vendeur;
+			this.date = date;
+		}
 	}
 
 	public BienImmobilier getBienEnVente() {
@@ -38,7 +40,9 @@ public class Mandat {
 	}
 
 	public void setDate(Date date) {
-		this.date = date;
+		if(date.after(new Date())){
+			this.date = date;
+		}
 	}
 
 }

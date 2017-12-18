@@ -28,4 +28,20 @@ public class RendezVous {
 	public Date getDateVisite(Date dateVisite){
 		return this.dateVisite = dateVisite;
 	}
+	
+	public void setVisiteur(Personne visiteur){
+		this.visiteur = visiteur;
+	}
+	
+	public Personne getVisiteur(){
+		return this.visiteur;
+	}
+	
+	public void setBienVisite(BienImmobilier bienVisite){
+		this.bienVisite = bienVisite;
+	}
+	
+	public BienImmobilier getBienVisite(){
+		return this.bienVisite;
+	}
 }
