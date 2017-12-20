@@ -27,5 +27,10 @@ public class PersonneMorale extends Personne {
 	public void setNumSiren(String numSiren) {
 		this.numSiren = numSiren;
 	}
+	
+	@Override
+	public String toString(){
+		return super.getName()+" "+this.getFormeJuridique()+" "+this.getNumSiren();
+	}
 
 }

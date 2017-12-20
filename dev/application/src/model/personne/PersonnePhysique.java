@@ -17,4 +17,9 @@ public class PersonnePhysique extends Personne {
 	public void setPrenom(String first_name) {
 		this.prenom = first_name;
 	}
+	
+	@Override
+	public String toString(){
+		return this.prenom+" "+super.getName();
+	}
 }

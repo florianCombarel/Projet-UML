@@ -1,19 +1,24 @@
 import java.util.InputMismatchException;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import model.Agence;
+import model.personne.Personne;
+import model.personne.PersonneMorale;
+import model.personne.PersonnePhysique;
 
 public class Console {
 	
-	private Agence agence = new Agence("Timmo");
+	private static Agence agence = new Agence("Timmo");
+	static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		System.out.println("- Bienvenue dans l'application de gestion de l'agence Timmo -");
-		Scanner clavier = new Scanner(System.in);
 		int valClavier = 0;
 		while(valClavier != 6){
-			System.out.println("\n- Vous êtes dans le menu principal de l'application -");
-			System.out.println("[1] Menu de gestion des clients\n"
+			System.out.print("\n- Vous êtes dans le menu principal de l'application -");
+			System.out.println("\n[1] Menu de gestion des clients\n"
 					+ "[2] Menu de gestion des biens immobiliers\n"
 					+ "[3] Menu de gestion des mandats\n"
 					+ "[4] Menu de gestion des promesse\n"
@@ -24,9 +29,9 @@ public class Console {
 				try{
 					valClavier = clavier.nextInt();
 				}catch(Exception e){
-					clavier.nextLine();
+					clavier.next();
 				}
-			}while(valClavier < 0 || valClavier > 7);
+			}while(valClavier < 1 || valClavier > 6);
 			switch(valClavier){
 			case 1 :
 				menuClient();
@@ -47,15 +52,15 @@ public class Console {
 				break;
 			}
 		}
+		System.out.println("\nAurevoir !");
 		clavier.close();
 	}
 	
 	private static void menuClient(){
-		Scanner clavier = new Scanner(System.in);
 		int valClavier = 0;
-		System.out.println("\n- Vous êtes dans le menu de gestion des clients -");
 		while(valClavier != 10){
-			System.out.println("[1] Afficher la liste des clients\n"
+			System.out.print("\n- Vous êtes dans le menu de gestion des clients -");
+			System.out.println("\n[1] Afficher la liste des clients\n"
 					+ "[2] Ajouter un client\n"
 					+ "[3] Supprimer un client\n"
 					+ "[4] Voir la liste des mandats d'un client\n"
@@ -69,16 +74,19 @@ public class Console {
 				System.out.print("Entrer un nombre correspondant à l'action à effectuer : ");
 				try{
 					valClavier = clavier.nextInt();
-				}catch(InputMismatchException e){
-					clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
 				}
-			}while(valClavier < 0 || valClavier > 11);
+			}while(valClavier < 1 || valClavier > 10);
 			switch(valClavier){
 			case 1 :
+				afficherListeClients();
 				break;
 			case 2 :
+				ajouterClient();
 				break;
 			case 3 :
+				supprimerClient();
 				break;
 			case 4 :
 				break;
@@ -94,29 +102,160 @@ public class Console {
 				break;
 			case 10 :
 				break;
-			case 11 :
-				break;
-			case 12 :
-				break;
-			case 13 :
-				break;
-			case 14 :
-				break;
-			case 15 :
-				break;
-			case 16 :
-				break;
 			}
 		}
-		clavier.close();
+	}
+	
+	private static void afficherListeClients(){
+		System.out.print("\n- Liste des clients -");
+		StringBuilder str = new StringBuilder();
+		for(Entry<Integer, Personne> client : agence.getClients().entrySet()){
+			str.append("\n["+client.getKey()+"]    "+client.getValue());
+		}
+		System.out.println(str.toString());
+	}
+	
+	private static void ajouterClient(){
+		System.out.print("\n- Ajout d'un client -");
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\n[1] Créer un client physique / [2] Créer un client moral : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 1 || valChoixPersonne > 2);
+		
+		String valNom = "";
+		String valPrenom = "";
+		String valAdresse = "";
+		String valTelephone = "";
+		String valMail = "";
+		String valFormeJuridique = "";
+		String valNumSiren = "";
+		switch(valChoixPersonne){
+		case 1:
+			clavier.nextLine();
+			do{
+				System.out.print("\nNom du client : ");
+				try{
+					valNom = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valNom.equals(""));
+			
+			do{
+				System.out.print("\nPrénom du client : ");
+				try{
+					valPrenom = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valPrenom.equals(""));
+			
+			do{
+				System.out.print("\nAdresse du client : ");
+				try{
+					valAdresse = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valAdresse.equals(""));
+			
+			do{
+				System.out.print("\nTelephone du client : ");
+				try{
+					valTelephone = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valTelephone.equals(""));
+			
+			do{
+				System.out.print("\nMail du client : ");
+				try{
+					valMail = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valMail.equals(""));
+			
+			PersonnePhysique p = new PersonnePhysique(valNom,valPrenom,valAdresse,valTelephone,valMail);
+			agence.addClients(p);
+			break;
+			
+		case 2:
+			clavier.nextLine();
+			do{
+				System.out.print("\nNom du client : ");
+				try{
+					valNom = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valNom.equals(""));
+			do{
+				System.out.print("\nAdresse du client : ");
+				try{
+					valAdresse = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valAdresse.equals(""));
+			
+			do{
+				System.out.print("\nTelephone du client : ");
+				try{
+					valTelephone = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valTelephone.equals(""));
+			
+			do{
+				System.out.print("\nMail du client : ");
+				try{
+					valMail = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valMail.equals(""));
+			
+			do{
+				System.out.print("\nForme juridique du client : ");
+				try{
+					valFormeJuridique = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valFormeJuridique.equals(""));
+			
+			do{
+				System.out.print("\nNuméro Siren du client : ");
+				try{
+					valNumSiren = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valNumSiren.equals(""));
+			
+			PersonneMorale pM = new PersonneMorale(valNom,valAdresse,valTelephone,valMail,valFormeJuridique,valNumSiren);
+			agence.addClients(pM);
+			break;
+		}
+	}
+	
+	private static void supprimerClient(){
+		
 	}
 	
 	private static void menuBienImmobilier(){
-		Scanner clavier = new Scanner(System.in);
 		int valClavier = 0;
-		System.out.println("\n- Vous êtes dans le menu de gestion des biens immobiliers -");
 		while(valClavier != 10){
-			System.out.println("[1] Afficher la liste des biens immobiliers\n"
+			System.out.print("\n- Vous êtes dans le menu de gestion des biens immobiliers -");
+			System.out.println("\n[1] Afficher la liste des biens immobiliers\n"
 					+ "[2] Ajouter un bien immobilier\n"
 					+ "[3] Supprimer un bien immobilier\n"
 					+ "[4] Voir la liste des mandats d'un bien immobilier\n"
@@ -130,10 +269,10 @@ public class Console {
 				System.out.print("Entrer un nombre correspondant à l'action à effectuer : ");
 				try{
 					valClavier = clavier.nextInt();
-				}catch(InputMismatchException e){
-					clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
 				}
-			}while(valClavier < 0 || valClavier > 11);
+			}while(valClavier < 1 || valClavier > 10);
 			switch(valClavier){
 			case 1 :
 				break;
@@ -155,29 +294,15 @@ public class Console {
 				break;
 			case 10 :
 				break;
-			case 11 :
-				break;
-			case 12 :
-				break;
-			case 13 :
-				break;
-			case 14 :
-				break;
-			case 15 :
-				break;
-			case 16 :
-				break;
 			}
 		}
-		clavier.close();
 	}
 	
 	private static void menuMandat(){
-		Scanner clavier = new Scanner(System.in);
 		int valClavier = 0;
-		System.out.println("\n- Vous êtes dans le menu de gestion des mandats -");
 		while(valClavier != 4){
-			System.out.println("[1] Afficher la liste des mandats\n"
+			System.out.print("\n- Vous êtes dans le menu de gestion des mandats -");
+			System.out.println("\n[1] Afficher la liste des mandats\n"
 					+ "[2] Ajouter un mandat\n"
 					+ "[3] Supprimer un mandat\n"
 					+ "[4] Revenir au menu précédent");
@@ -185,10 +310,10 @@ public class Console {
 				System.out.print("Entrer un nombre correspondant à l'action à effectuer : ");
 				try{
 					valClavier = clavier.nextInt();
-				}catch(InputMismatchException e){
-					clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
 				}
-			}while(valClavier < 0 || valClavier > 5);
+			}while(valClavier < 1 || valClavier > 4);
 			switch(valClavier){
 			case 1 :
 				break;
@@ -200,15 +325,13 @@ public class Console {
 				break;
 			}
 		}
-		clavier.close();
 	}
 	
 	private static void menuPromesse(){
-		Scanner clavier = new Scanner(System.in);
 		int valClavier = 0;
-		System.out.println("\n- Vous êtes dans le menu de gestion des promesses -");
 		while(valClavier != 4){
-			System.out.println("[1] Afficher la liste des promesses\n"
+			System.out.print("\n- Vous êtes dans le menu de gestion des promesses -");
+			System.out.println("\n[1] Afficher la liste des promesses\n"
 					+ "[2] Ajouter une promesse\n"
 					+ "[3] Supprimer une promesse\n"
 					+ "[4] Revenir au menu précédent");
@@ -216,10 +339,10 @@ public class Console {
 				System.out.print("Entrer un nombre correspondant à l'action à effectuer : ");
 				try{
 					valClavier = clavier.nextInt();
-				}catch(InputMismatchException e){
-					clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
 				}
-			}while(valClavier < 0 || valClavier > 5);
+			}while(valClavier < 1 || valClavier > 4);
 			switch(valClavier){
 			case 1 :
 				break;
@@ -231,15 +354,13 @@ public class Console {
 				break;
 			}
 		}
-		clavier.close();
 	}
 	
 	private static void menuRDV(){
-		Scanner clavier = new Scanner(System.in);
 		int valClavier = 0;
-		System.out.println("\n- Vous êtes dans le menu de gestion des rdv -");
 		while(valClavier != 4){
-			System.out.println("[1] Afficher la liste des rdv\n"
+			System.out.print("\n- Vous êtes dans le menu de gestion des rdv -");
+			System.out.println("\n[1] Afficher la liste des rdv\n"
 					+ "[2] Ajouter une rdv\n"
 					+ "[3] Supprimer une rdv\n"
 					+ "[4] Revenir au menu précédent");
@@ -247,10 +368,10 @@ public class Console {
 				System.out.print("Entrer un nombre correspondant à l'action à effectuer : ");
 				try{
 					valClavier = clavier.nextInt();
-				}catch(InputMismatchException e){
-					clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
 				}
-			}while(valClavier < 0 || valClavier > 5);
+			}while(valClavier < 1 || valClavier > 4);
 			switch(valClavier){
 			case 1 :
 				break;
@@ -262,7 +383,6 @@ public class Console {
 				break;
 			}
 		}
-		clavier.close();
 	}
 
 }
