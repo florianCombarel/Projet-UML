@@ -22,6 +22,12 @@ public class Console {
 
 	public static void main(String[] args) {
 		System.out.println("- Bienvenue dans l'application de gestion de l'agence Timmo -");
+		menuGeneral();
+		System.out.println("\nAurevoir !");
+		clavier.close();
+	}
+	
+	private static void menuGeneral() {
 		int valClavier = 0;
 		while(valClavier != 6){
 			System.out.print("\n- Vous êtes dans le menu principal de l'application -");
@@ -59,8 +65,6 @@ public class Console {
 				break;
 			}
 		}
-		System.out.println("\nAurevoir !");
-		clavier.close();
 	}
 	
 	private static void menuClient(){
@@ -113,6 +117,7 @@ public class Console {
 			case 9 :
 				break;
 			case 10 :
+				menuGeneral();
 				break;
 			}
 		}
@@ -552,7 +557,7 @@ public class Console {
 				afficherListePublicites();
 				break;
 			case 6 :
-				
+				menuGeneral();
 				break;
 			}
 		}
