@@ -56,14 +56,8 @@ public class Agence {
 		}
 	}
 	
-	public void removeClients(Personne p) {
-		Integer delete = null;
-		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
-			if(entry.getValue().equals(p)) {
-				delete = entry.getKey();
-			}
-		}
-		this.clients.remove(delete);
+	public void removeClients(int codeClient) {
+		this.clients.remove(codeClient);
 	}
 	
 	public void removeBiens(BienImmobilier b) {
@@ -76,13 +70,8 @@ public class Agence {
 		this.biens.remove(delete);
 	}
 	
-	public Personne getPersonne(int number) {
-		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
-			if(entry.getKey() == number) {
-				return entry.getValue();
-			}
-		}
-		return null;
+	public Personne getPersonne(int codeClient) {
+		return this.clients.get(codeClient);
 	}
 
 	public String getNom() {

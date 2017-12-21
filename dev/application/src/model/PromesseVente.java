@@ -84,4 +84,9 @@ public class PromesseVente {
 	public void setAcheteur(Personne acheteur) {
 		this.acheteur = acheteur;
 	}
+	
+	@Override
+	public String toString(){
+		return this.dateVente.toString()+" "+this.bienAchete;
+	}
 }

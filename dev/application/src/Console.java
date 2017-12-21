@@ -4,6 +4,8 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 
 import model.Agence;
+import model.Mandat;
+import model.PromesseVente;
 import model.personne.Personne;
 import model.personne.PersonneMorale;
 import model.personne.PersonnePhysique;
@@ -89,8 +91,10 @@ public class Console {
 				supprimerClient();
 				break;
 			case 4 :
+				afficherListeMandats();
 				break;
 			case 5 :
+				afficherListePromesse();
 				break;
 			case 6 :
 				break;
@@ -248,7 +252,60 @@ public class Console {
 	}
 	
 	private static void supprimerClient(){
+		System.out.print("\n- Suppression d'un client -");
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client à supprimer : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
 		
+		if(agence.getPersonne(valChoixPersonne) != null){
+			agence.removeClients(valChoixPersonne);
+		}
+	}
+	
+	private static void afficherListeMandats(){
+		System.out.print("\n- Liste des mandats d'un client -");
+		StringBuilder str = new StringBuilder();
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut afficher la liste : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		
+		Personne p = agence.getPersonne(valChoixPersonne);
+		for(Mandat m : p.getbiensEnVente()){
+			str.append("\n"+m);
+		}
+		System.out.println(str.toString());
+	}
+	
+	private static void afficherListePromesse(){
+		System.out.print("\n- Liste des promesses d'un client -");
+		StringBuilder str = new StringBuilder();
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut afficher la liste : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		
+		Personne p = agence.getPersonne(valChoixPersonne);
+		for(PromesseVente pr : p.getbiensAchetes()){
+			str.append("\n"+pr);
+		}
+		System.out.println(str.toString());
 	}
 	
 	private static void menuBienImmobilier(){
