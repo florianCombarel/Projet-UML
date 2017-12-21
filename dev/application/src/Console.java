@@ -287,8 +287,8 @@ public class Console {
 		}while(valChoixPersonne < 0);
 		
 		Personne p = agence.getPersonne(valChoixPersonne);
-		for(Mandat m : p.getbiensEnVente()){
-			str.append("\n"+m);
+		for(Entry<Integer, Mandat> m : p.getBiensEnVente().entrySet()){
+			str.append("\n["+m.getKey()+"]    "+m.getValue());
 		}
 		System.out.println(str.toString());
 	}
@@ -307,8 +307,8 @@ public class Console {
 		}while(valChoixPersonne < 0);
 		
 		Personne p = agence.getPersonne(valChoixPersonne);
-		for(PromesseVente pr : p.getbiensAchetes()){
-			str.append("\n"+pr);
+		for(Entry<Integer, PromesseVente> pr : p.getBiensAchetes().entrySet()){
+			str.append("\n["+pr.getKey()+"]    "+pr.getValue());
 		}
 		System.out.println(str.toString());
 	}
@@ -327,8 +327,8 @@ public class Console {
 		}while(valChoixPersonne < 0);
 		
 		Personne p = agence.getPersonne(valChoixPersonne);
-		for(RendezVous r : p.getbiensVisites()){
-			str.append("\n"+r);
+		for(Entry<Integer, RendezVous> r : p.getBiensVisites().entrySet()){
+			str.append("\n["+r.getKey()+"]    "+r.getValue());
 		}
 		System.out.println(str.toString());
 	}
@@ -347,8 +347,8 @@ public class Console {
 		}while(valChoixPersonne < 0);
 		
 		Personne p = agence.getPersonne(valChoixPersonne);
-		for(Voeu v : p.getSetVoeu()){
-			str.append("\n"+v.toString());
+		for(Entry<Integer,Voeu> v : p.getSetVoeu().entrySet()){
+			str.append("\n["+v.getKey()+"]    "+v.getValue());
 		}
 		System.out.println(str.toString());
 	}
