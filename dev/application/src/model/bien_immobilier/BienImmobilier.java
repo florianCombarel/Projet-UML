@@ -1,7 +1,9 @@
 package model.bien_immobilier;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Random;
 
 import model.Mandat;
 import model.PromesseVente;
@@ -18,8 +20,8 @@ public abstract class BienImmobilier {
 	private Date dateDispo;
 	private Mandat mandat;
 	private PromesseVente promesseVente;
-	private HashSet<RendezVous> rendezVous;
-	private HashSet<Publicite> publicites;
+	private HashMap<Integer, RendezVous> rendezVous;
+	private HashMap<Integer, Publicite> publicites;
 	
 	public BienImmobilier(String address, String exposition, double demandPrice, Date dateSellingDemand, Date dateDispo) {
 		this.adresse = address;
@@ -27,24 +29,56 @@ public abstract class BienImmobilier {
 		this.prixDemande = demandPrice;
 		this.dateVenteVoulue = dateSellingDemand;
 		this.dateDispo = dateDispo;
-		this.rendezVous = new HashSet<>();
-		this.publicites = new HashSet<>();
+		this.rendezVous = new HashMap<>();
+		this.publicites = new HashMap<>();
 	}
 	
 	public void addRendezVous(RendezVous rdv){
-		this.rendezVous.add(rdv);
+		this.rendezVous.put(randomNumber(),rdv);
 	}
 	
-	public void removeRendezVous(RendezVous rdv){
-		this.rendezVous.remove(rdv);
+	public void removeRendezVous(int codeRDV){
+		this.rendezVous.remove(codeRDV);
+	}
+	
+	public RendezVous getRendezVous(int codeRDV) {
+		return this.rendezVous.get(codeRDV);
 	}
 	
 	public void addPublicite(Publicite pub){
-		this.publicites.add(pub);
+		this.publicites.put(randomNumber(), pub);
 	}
 	
-	public void removePublicite(Publicite pub){
-		this.publicites.remove(pub);
+	public void removePublicite(int codePub){
+		this.publicites.remove(codePub);
+	}
+	
+	public Publicite getPublicite(int codePub) {
+		return this.publicites.get(codePub);
+	}
+	
+	private Integer randomNumber() {
+		Random randomGenerator = new Random();
+		int randomNumber = randomGenerator.nextInt(Integer.MAX_VALUE);
+		return randomNumber;
+	}
+	
+	
+
+	public HashMap<Integer, RendezVous> getRendezVous() {
+		return rendezVous;
+	}
+
+	public void setRendezVous(HashMap<Integer, RendezVous> rendezVous) {
+		this.rendezVous = rendezVous;
+	}
+
+	public HashMap<Integer, Publicite> getPublicites() {
+		return publicites;
+	}
+
+	public void setPublicites(HashMap<Integer, Publicite> publicites) {
+		this.publicites = publicites;
 	}
 
 	public Mandat getMandat() {

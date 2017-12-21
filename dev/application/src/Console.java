@@ -560,4 +560,91 @@ public class Console {
 		}
 	}
 
+	
+	private static void menuBienImmobilier(){
+		int valClavier = 0;
+		while(valClavier != 10){
+			System.out.print("\n- Vous êtes dans le menu de gestion des biens immobiliers -");
+			System.out.println("\n[1] Afficher la liste des biens immobiliers\n"
+					+ "[2] Ajouter un bien immobilier\n"
+					+ "[3] Supprimer un bien immobilier\n"
+					+ "[4] Voir la liste des rendez-vous pour un bien immobilier\n"
+					+ "[5] Voir la liste des publicites pour un bien immobilier\n"
+					+ "[6] Revenir au menu précédent");
+			do{
+				System.out.print("Entrer un nombre correspondant à l'action à effectuer : ");
+				try{
+					valClavier = clavier.nextInt();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(valClavier < 1 || valClavier > 10);
+			switch(valClavier){
+			case 1 :
+				afficherListeBiens();
+				break;
+			case 2 :
+				ajouterBien();
+				break;
+			case 3 :
+				supprimerBien();
+				break;
+			case 4 :
+				afficherListeRendezVous();
+				break;
+			case 5 :
+				afficherListePublicites();
+				break;
+			case 6 :
+				
+				break;
+			}
+		}
+	}
+	
+	private static void afficherListeBiens(){
+		System.out.print("\n- Liste des biens immobiliers -");
+		StringBuilder str = new StringBuilder();
+		for(Entry<Integer, BienImmobilier> bien : agence.getBiens().entrySet()){
+			str.append("\n["+bien.getKey()+"]    "+bien.getValue());
+		}
+		System.out.println(str.toString());
+	}
+	
+	private static void ajouterBien(){
+		System.out.print("\n- Ajout d'un bien immobilier -");
+		int valChoixBien = 0;
+		do{
+			System.out.print("\n[1] Créer un appartement / [2] Créer un terrain / [3] Créer une maison : ");
+			try{
+				valChoixBien = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixBien < 1 || valChoixBien > 3);
+		
+		switch(valChoixBien){
+		case 1:
+			creerAppartement();
+			break;
+		case 2:
+			creerTerrain();
+			break;
+		case 3:
+			creerMaison();
+			break;
+		}	
+	}
+	
+	private static void supprimerBien(){
+		
+	}
+	
+	private static void afficherListeRendezVous(){
+		
+	}
+	
+	private static void afficherListePublicites(){
+		
+	}
 }

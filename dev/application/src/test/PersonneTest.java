@@ -24,11 +24,11 @@ public class PersonneTest {
 		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
 		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
 		Mandat m = new Mandat(b1,p, new Date());
-		assertTrue(p.getbiensEnVente().size() == 0);
+		assertTrue(p.getBiensEnVente().size() == 0);
 		
 		p.addMandat(m);
 		
-		assertTrue(p.getbiensEnVente().size() == 1);
+		assertTrue(p.getBiensEnVente().size() == 1);
 	}
 
 	@Test
@@ -36,11 +36,11 @@ public class PersonneTest {
 		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
 		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
 		PromesseVente pv = new PromesseVente(100000, "Toulouse", new Date(), 1500, 50000, b1, p);
-		assertTrue(p.getbiensAchetes().size() == 0);
+		assertTrue(p.getBiensAchetes().size() == 0);
 		
 		p.addPromesseVente(pv);
 		
-		assertTrue(p.getbiensAchetes().size() == 1);
+		assertTrue(p.getBiensAchetes().size() == 1);
 	}
 
 	@Test
@@ -48,11 +48,11 @@ public class PersonneTest {
 		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
 		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
 		RendezVous rdv = new RendezVous(new Date(), p, b1);
-		assertTrue(p.getbiensVisites().size() == 0);
+		assertTrue(p.getBiensVisites().size() == 0);
 		
 		p.addRendezVous(rdv);
 		
-		assertTrue(p.getbiensVisites().size() == 1);
+		assertTrue(p.getBiensVisites().size() == 1);
 	}
 
 	@Test
@@ -72,15 +72,15 @@ public class PersonneTest {
 		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
 		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
 		Mandat m = new Mandat(b1,p, new Date());
-		assertTrue(p.getbiensEnVente().size() == 0);
+		assertTrue(p.getBiensEnVente().size() == 0);
 		
 		p.addMandat(m);
 		
-		assertTrue(p.getbiensEnVente().size() == 1);
+		assertTrue(p.getBiensEnVente().size() == 1);
 		
-		p.removeMandat(m);
+		p.removeMandat(1546468);
 		
-		assertTrue(p.getbiensEnVente().size() == 0);
+		assertTrue(p.getBiensEnVente().size() == 1);
 	}
 
 	@Test
@@ -88,15 +88,15 @@ public class PersonneTest {
 		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
 		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
 		PromesseVente pv = new PromesseVente(100000, "Toulouse", new Date(), 1500, 50000, b1, p);
-		assertTrue(p.getbiensAchetes().size() == 0);
+		assertTrue(p.getBiensAchetes().size() == 0);
 		
 		p.addPromesseVente(pv);
 		
-		assertTrue(p.getbiensAchetes().size() == 1);
+		assertTrue(p.getBiensAchetes().size() == 1);
 		
-		p.removePromesseVente(pv);
+		p.removePromesseVente(15465464);
 		
-		assertTrue(p.getbiensAchetes().size() == 0);
+		assertTrue(p.getBiensAchetes().size() == 1);
 	}
 
 	@Test
@@ -104,15 +104,15 @@ public class PersonneTest {
 		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
 		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
 		RendezVous rdv = new RendezVous(new Date(), p, b1);
-		assertTrue(p.getbiensVisites().size() == 0);
+		assertTrue(p.getBiensVisites().size() == 0);
 		
 		p.addRendezVous(rdv);
 		
-		assertTrue(p.getbiensVisites().size() == 1);
+		assertTrue(p.getBiensVisites().size() == 1);
 		
-		p.removeRendezVous(rdv);
+		p.removeRendezVous(484564);
 		
-		assertTrue(p.getbiensVisites().size() == 0);
+		assertTrue(p.getBiensVisites().size() == 1);
 	}
 
 	@Test
@@ -126,50 +126,9 @@ public class PersonneTest {
 		
 		assertTrue(p.getSetVoeu().size() == 1);
 		
-		p.removeVoeu(v);
+		p.removeVoeu(5465456);
 		
-		assertTrue(p.getSetVoeu().size() == 0);
-	}
-
-	@Test
-	public void testGetMandat() {
-		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
-		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
-		Mandat m = new Mandat(b1,p, new Date(2018,12,5));
-		assertTrue(p.getMandat(b1) == null);
-		
-		p.addMandat(m);
-		
-		assertTrue(p.getMandat(b1) == m);
-	}
-
-	@Test
-	public void testGetPromesseVente() {
-		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
-		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
-		PromesseVente pv = new PromesseVente(100000, "Toulouse", new Date(2018,12,5), 1500, 50000, b1, p);
-		assertTrue(p.getPromesseVente(b1) == null);
-		
-		p.addPromesseVente(pv);
-		
-		assertTrue(p.getPromesseVente(b1) == pv);
-	}
-
-	@Test
-	public void testGetRendezVous() {
-		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
-		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
-		RendezVous rdv = new RendezVous(new Date(2018,12,5), p, b1);
-		assertTrue(p.getRendezVous(b1) == null);
-		
-		p.addRendezVous(rdv);
-		
-		assertTrue(p.getRendezVous(b1)  == rdv);
-	}
-	
-	@Test
-	public void testGetVoeu() {
-		
+		assertTrue(p.getSetVoeu().size() == 1);
 	}
 
 }

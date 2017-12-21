@@ -19,7 +19,7 @@ public class Publicite {
 	}
 	
 	public void removeDocument(String document){
-		this.documents.remove(documents);
+		this.documents.remove(document);
 	}
 	
 	public void setBien(BienImmobilier bien){
