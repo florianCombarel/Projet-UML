@@ -47,7 +47,7 @@ public class Mandat {
 	
 	@Override
 	public String toString(){
-		return this.date.toString()+" "+this.bienEnVente;
+		return this.date.toString()+" : "+this.bienEnVente;
 	}
 
 }

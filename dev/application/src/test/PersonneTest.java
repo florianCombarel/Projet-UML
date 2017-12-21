@@ -135,7 +135,7 @@ public class PersonneTest {
 	public void testGetMandat() {
 		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
 		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
-		Mandat m = new Mandat(b1,p, new Date());
+		Mandat m = new Mandat(b1,p, new Date(2018,12,5));
 		assertTrue(p.getMandat(b1) == null);
 		
 		p.addMandat(m);
@@ -145,12 +145,26 @@ public class PersonneTest {
 
 	@Test
 	public void testGetPromesseVente() {
-		fail("Not yet implemented");
+		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
+		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
+		PromesseVente pv = new PromesseVente(100000, "Toulouse", new Date(2018,12,5), 1500, 50000, b1, p);
+		assertTrue(p.getPromesseVente(b1) == null);
+		
+		p.addPromesseVente(pv);
+		
+		assertTrue(p.getPromesseVente(b1) == pv);
 	}
 
 	@Test
 	public void testGetRendezVous() {
-		fail("Not yet implemented");
+		p = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
+		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
+		RendezVous rdv = new RendezVous(new Date(2018,12,5), p, b1);
+		assertTrue(p.getRendezVous(b1) == null);
+		
+		p.addRendezVous(rdv);
+		
+		assertTrue(p.getRendezVous(b1)  == rdv);
 	}
 	
 	@Test

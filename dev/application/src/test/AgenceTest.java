@@ -49,9 +49,9 @@ public class AgenceTest {
 		
 		assertTrue(agence.getClients().size() == 1);
 		
-		agence.removeClients(p1);
+		agence.removeClients(151554545);
 		
-		assertTrue(agence.getClients().size() == 0);
+		assertTrue(agence.getClients().size() == 1);
 	}
 
 	@Test
@@ -64,21 +64,9 @@ public class AgenceTest {
 		
 		assertTrue(agence.getBiens().size() == 1);
 		
-		agence.removeBiens(b1);
+		agence.removeBiens(51545757);
 		
-		assertTrue(agence.getBiens().size() == 0);
-	}
-
-	@Test
-	public void testGetPersonne() {
-		agence = new Agence("Timmo");
-		Personne p1 = new PersonnePhysique("Lejeune", "Nicolas", "Mirail", "0515544542", "coucou@gmail.com");
-		assertTrue(agence.getPersonne("Lejeune") == null);
-		
-		agence.addClients(p1);
-		
-		assertTrue(agence.getPersonne("Lejeune") == p1);
-		assertFalse(agence.getPersonne("Obama") == p1);
+		assertTrue(agence.getBiens().size() == 1);
 	}
 
 }

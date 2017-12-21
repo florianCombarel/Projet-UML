@@ -60,8 +60,8 @@ public class Agence {
 		this.clients.remove(codeClient);
 	}
 	
-	public void removeBiens(BienImmobilier b) {
-		this.biens.remove(b);
+	public void removeBiens(int codeBien) {
+		this.biens.remove(codeBien);
 	}
 	
 	public Personne getPersonne(int codeClient) {

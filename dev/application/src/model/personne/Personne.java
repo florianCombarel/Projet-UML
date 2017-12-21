@@ -1,6 +1,8 @@
 package model.personne;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Random;
 
 import model.Mandat;
 import model.PromesseVente;
@@ -14,120 +16,112 @@ public abstract class Personne {
 	private String adresse;
 	private String telephone;
 	private String mail;
-	private HashSet<Mandat> biensEnVente;
-	private HashSet<PromesseVente> biensAchetes;
-	private HashSet<RendezVous> biensVisites;
-	private HashSet<Voeu> setVoeu;
+	private HashMap<Integer,Mandat> biensEnVente;
+	private HashMap<Integer, PromesseVente> biensAchetes;
+	private HashMap<Integer, RendezVous> biensVisites;
+	private HashMap<Integer, Voeu> setVoeu;
 	
 	public Personne(String name, String address, String telephone, String mail) {
 		this.nom = name;
 		this.adresse = address;
 		this.telephone = telephone;
 		this.mail = mail;
-		this.biensEnVente = new HashSet<>();
-		this.biensVisites = new HashSet<>();
-		this.biensAchetes = new HashSet<>();
-		this.setVoeu = new HashSet<>();
+		this.biensEnVente = new HashMap<>();
+		this.biensVisites = new HashMap<>();
+		this.biensAchetes = new HashMap<>();
+		this.setVoeu = new HashMap<>();
 	}
 	
 	public void addMandat(Mandat m) {
-		this.biensEnVente.add(m);
+		this.biensEnVente.put(randomNumber(), m);
 	}
 	
 	public void addPromesseVente(PromesseVente pv) {
-		this.biensAchetes.add(pv);
+		this.biensAchetes.put(randomNumber(), pv);
 	}
 	
 	public void addRendezVous(RendezVous rv) {
-		this.biensVisites.add(rv);
+		this.biensVisites.put(randomNumber(), rv);
 	}
 	
 	public void addVoeu(Voeu v) {
-		this.setVoeu.add(v);
+		this.setVoeu.put(randomNumber(), v);
 	}
 	
-	public void removeMandat(Mandat m) {
-		this.biensEnVente.remove(m);
+	public void removeMandat(int codeMandat) {
+		this.biensEnVente.remove(codeMandat);
 	}
 	
-	public void removePromesseVente(PromesseVente pv) {
-		this.biensAchetes.remove(pv);
+	public void removePromesseVente(int codePromesseVente) {
+		this.biensAchetes.remove(codePromesseVente);
 	}
 	
-	public void removeRendezVous(RendezVous rv) {
-		this.biensVisites.remove(rv);
+	public void removeRendezVous(int codeRDV) {
+		this.biensVisites.remove(codeRDV);
 	}
 	
-	public void removeVoeu(Voeu v) {
-		this.setVoeu.remove(v);
+	public void removeVoeu(int codeVoeu) {
+		this.setVoeu.remove(codeVoeu);
 	}
 	
-	public Mandat getMandat(BienImmobilier b) {
-		Mandat m = null;
-		for(Mandat mandat : this.biensEnVente) {
-			if(mandat.getBienEnVente() == b) {
-				m = mandat;
-			}
-		}
-		return m;
+	public Mandat getMandat(int codeMandat) {
+		return this.biensEnVente.get(codeMandat);
 	}
 	
-	public PromesseVente getPromesseVente(BienImmobilier b) {
-		PromesseVente pv = null;
-		for(PromesseVente promessevente : this.biensAchetes) {
-			if(promessevente.getBienAchete().equals(b)) {
-				pv = promessevente;
-			}
-		}
-		return pv;
+	public PromesseVente getPromesseVente(int codePromesseVente) {
+		return this.biensAchetes.get(codePromesseVente);
 	}
 	
-	public RendezVous getRendezVous(BienImmobilier b) {
-		RendezVous pv = null;
-		for(RendezVous rdv : this.biensVisites) {
-			if(rdv.getBienVisite().equals(b)) {
-				pv = rdv;
-			}
-		}
-		return pv;
+	public RendezVous getRendezVous(int codeRDV) {
+		return this.biensVisites.get(codeRDV);
+	}
+	
+	public Voeu getVoeu(int codeVoeu) {
+		return this.setVoeu.get(codeVoeu);
+	}
+	
+	private Integer randomNumber() {
+		Random randomGenerator = new Random();
+		int randomNumber = randomGenerator.nextInt(Integer.MAX_VALUE);
+		return randomNumber;
 	}
 	
 	/*Getters and Setters*/
 
-	public HashSet<Mandat> getbiensEnVente() {
+	public String getName() {
+		return nom;
+	}
+
+	public HashMap<Integer, Mandat> getBiensEnVente() {
 		return biensEnVente;
 	}
 
-	public void setbiensEnVente(HashSet<Mandat> setMandat) {
-		this.biensEnVente = setMandat;
+	public void setBiensEnVente(HashMap<Integer, Mandat> biensEnVente) {
+		this.biensEnVente = biensEnVente;
 	}
 
-	public HashSet<RendezVous> getbiensVisites() {
-		return biensVisites;
-	}
-
-	public void setbiensVisites(HashSet<RendezVous> setPromesseVente) {
-		this.biensVisites = setPromesseVente;
-	}
-
-	public HashSet<PromesseVente> getbiensAchetes() {
+	public HashMap<Integer, PromesseVente> getBiensAchetes() {
 		return biensAchetes;
 	}
 
-	public void setSetRendezVous(HashSet<PromesseVente> setRendezVous) {
-		this.biensAchetes = setRendezVous;
+	public void setBiensAchetes(HashMap<Integer, PromesseVente> biensAchetes) {
+		this.biensAchetes = biensAchetes;
 	}
 
-	public HashSet<Voeu> getSetVoeu() {
+	public HashMap<Integer, RendezVous> getBiensVisites() {
+		return biensVisites;
+	}
+
+	public void setBiensVisites(HashMap<Integer, RendezVous> biensVisites) {
+		this.biensVisites = biensVisites;
+	}
+
+	public HashMap<Integer, Voeu> getSetVoeu() {
 		return setVoeu;
 	}
 
-	public void setSetVoeu(HashSet<Voeu> setVoeu) {
+	public void setSetVoeu(HashMap<Integer, Voeu> setVoeu) {
 		this.setVoeu = setVoeu;
-	}
-
-	public String getName() {
-		return nom;
 	}
 
 	public void setName(String name) {
@@ -157,6 +151,13 @@ public abstract class Personne {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+
+	@Override
+	public String toString() {
+		return this.nom;
+	}
+	
+	
 	
 
 }

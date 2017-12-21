@@ -102,6 +102,13 @@ public abstract class BienImmobilier {
 	public void setDateDispo(Date dateDispo) {
 		this.dateDispo = dateDispo;
 	}
+
+	@Override
+	public String toString() {
+		return this.adresse;
+	}
+	
+	
 	
 
 }
