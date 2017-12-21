@@ -11,6 +11,8 @@ import model.RendezVous;
 import model.Voeu;
 import model.bien_immobilier.Appartement;
 import model.bien_immobilier.BienImmobilier;
+import model.bien_immobilier.Maison;
+import model.bien_immobilier.Terrain;
 import model.personne.Personne;
 import model.personne.PersonneMorale;
 import model.personne.PersonnePhysique;
@@ -521,7 +523,6 @@ public class Console {
 		}
 	}
 
-	
 	private static void menuBienImmobilier(){
 		int valClavier = 0;
 		while(valClavier != 10){
@@ -583,7 +584,7 @@ public class Console {
 				clavier.next();
 			}
 		}while(valChoixBien < 1 || valChoixBien > 3);
-		
+		clavier.nextLine();
 		switch(valChoixBien){
 		case 1:
 			creerAppartement();
@@ -593,6 +594,9 @@ public class Console {
 			break;
 		case 3:
 			creerMaison();
+			break;
+		default:
+			menuBienImmobilier();
 			break;
 		}	
 	}
@@ -692,11 +696,135 @@ public class Console {
 	}
 	
 	private static void creerTerrain() {
+		String adresse = "";
+		do {
+			System.out.print("\nAdresse du terrain : ");
+			try{
+				adresse = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(adresse.equals(""));
+		String exposition = "";
+		do {
+			System.out.println("\nExposition : ");
+			try{
+				exposition = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(exposition.equals(""));
+		double demandPrice = 0;
+		do {
+			System.out.println("\nPrix demandé : ");
+			try{
+				demandPrice = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(demandPrice < 0);
+		
+		Date dateSellingDemand = getDate("demand");
+		Date dateDispo = getDate("dispo");
+		
+		double livingSurface = 0;
+		do {
+			System.out.println("\nSurface : ");
+			try{
+				livingSurface = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(livingSurface < 0);
+		
+		double facadeLength = 0;
+		do {
+			System.out.println("\nLongueur de façade : ");
+			try{
+				facadeLength = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(facadeLength < 0);
+		
+		BienImmobilier b = new Terrain(adresse, exposition, demandPrice, dateSellingDemand, dateDispo, livingSurface, facadeLength);
+		agence.addBiens(b);
 		
 	}
 	
 	private static void creerMaison() {
+		String adresse = "";
+		do {
+			System.out.print("\nAdresse de la maison : ");
+			try{
+				adresse = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(adresse.equals(""));
+		String exposition = "";
+		do {
+			System.out.println("\nExposition : ");
+			try{
+				exposition = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(exposition.equals(""));
+		double demandPrice = 0;
+		do {
+			System.out.println("\nPrix demandé : ");
+			try{
+				demandPrice = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(demandPrice < 0);
 		
+		Date dateSellingDemand = getDate("demand");
+		Date dateDispo = getDate("dispo");
+		
+		double livingSurface = 0;
+		do {
+			System.out.println("\nSurface : ");
+			try{
+				livingSurface = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(livingSurface < 0);
+		
+		int nbRoom = 0;
+		do {
+			System.out.println("\nNombre de pièces : ");
+			try{
+				nbRoom = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(nbRoom < 0);
+		
+		int nbFloor = 0;
+		do {
+			System.out.println("\nNombre d'étages : ");
+			try{
+				nbFloor = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(nbFloor < 0);
+		String heatingSystem = "";
+		do {
+			System.out.print("\nSystème de chauffage : ");
+			try{
+				heatingSystem = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(heatingSystem.equals(""));
+		
+		BienImmobilier b = new Maison(adresse, exposition, demandPrice, dateSellingDemand, dateDispo, livingSurface, nbRoom, nbFloor, heatingSystem);
+		agence.addBiens(b);
 	}
 	
 	private static void supprimerBien(){
