@@ -72,6 +72,15 @@ public abstract class Personne {
 		return m;
 	}
 	
+	public void touMandat(BienImmobilier b) {
+		Mandat m = null;
+		for(Mandat mandat : this.biensEnVente) {
+			if(mandat.getBienEnVente() == b) {
+				System.out.println(mandat+" coucou");
+			}
+		}
+	}
+	
 	public PromesseVente getPromesseVente(BienImmobilier b) {
 		PromesseVente pv = null;
 		for(PromesseVente promessevente : this.biensAchetes) {
