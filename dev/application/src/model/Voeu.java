@@ -78,4 +78,9 @@ public class Voeu {
 	public Personne getClient(){
 		return this.client;
 	}
+	
+	@Override
+	public String toString(){
+		return this.typeBien;
+	}
 }

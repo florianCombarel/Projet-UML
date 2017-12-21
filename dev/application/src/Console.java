@@ -6,6 +6,8 @@ import java.util.Scanner;
 import model.Agence;
 import model.Mandat;
 import model.PromesseVente;
+import model.RendezVous;
+import model.Voeu;
 import model.personne.Personne;
 import model.personne.PersonneMorale;
 import model.personne.PersonnePhysique;
@@ -94,11 +96,13 @@ public class Console {
 				afficherListeMandats();
 				break;
 			case 5 :
-				afficherListePromesse();
+				afficherListePromesses();
 				break;
 			case 6 :
+				afficherListeRDV();
 				break;
 			case 7 :
+				afficherListeVoeux();
 				break;
 			case 8 :
 				break;
@@ -288,7 +292,7 @@ public class Console {
 		System.out.println(str.toString());
 	}
 	
-	private static void afficherListePromesse(){
+	private static void afficherListePromesses(){
 		System.out.print("\n- Liste des promesses d'un client -");
 		StringBuilder str = new StringBuilder();
 		int valChoixPersonne = 0;
@@ -304,6 +308,46 @@ public class Console {
 		Personne p = agence.getPersonne(valChoixPersonne);
 		for(PromesseVente pr : p.getbiensAchetes()){
 			str.append("\n"+pr);
+		}
+		System.out.println(str.toString());
+	}
+	
+	private static void afficherListeRDV(){
+		System.out.print("\n- Liste des rdv d'un client -");
+		StringBuilder str = new StringBuilder();
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut afficher la liste : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		
+		Personne p = agence.getPersonne(valChoixPersonne);
+		for(RendezVous r : p.getbiensVisites()){
+			str.append("\n"+r);
+		}
+		System.out.println(str.toString());
+	}
+	
+	private static void afficherListeVoeux(){
+		System.out.print("\n- Liste des voeux d'un client -");
+		StringBuilder str = new StringBuilder();
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut afficher la liste : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		
+		Personne p = agence.getPersonne(valChoixPersonne);
+		for(Voeu v : p.getSetVoeu()){
+			str.append("\n"+v);
 		}
 		System.out.println(str.toString());
 	}
