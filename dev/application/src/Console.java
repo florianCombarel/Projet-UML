@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -8,6 +9,8 @@ import model.Mandat;
 import model.PromesseVente;
 import model.RendezVous;
 import model.Voeu;
+import model.bien_immobilier.Appartement;
+import model.bien_immobilier.BienImmobilier;
 import model.personne.Personne;
 import model.personne.PersonneMorale;
 import model.personne.PersonnePhysique;
@@ -426,53 +429,6 @@ public class Console {
 		p.addVoeu(v);
 	}
 	
-	private static void menuBienImmobilier(){
-		int valClavier = 0;
-		while(valClavier != 10){
-			System.out.print("\n- Vous êtes dans le menu de gestion des biens immobiliers -");
-			System.out.println("\n[1] Afficher la liste des biens immobiliers\n"
-					+ "[2] Ajouter un bien immobilier\n"
-					+ "[3] Supprimer un bien immobilier\n"
-					+ "[4] Voir la liste des mandats d'un bien immobilier\n"
-					+ "[5] Voir la liste des promesses d'un bien immobilier\n"
-					+ "[6] Voir la liste des rdv d'un bien immobilier\n"
-					+ "[7] Voir la liste des publicites d'un bien immobilier\n"
-					+ "[8] Ajouter une publicite pour un bien immobilier\n"
-					+ "[9] Supprimer une publicite pour un bien immobilier\n"
-					+ "[10] Revenir au menu précédent");
-			do{
-				System.out.print("Entrer un nombre correspondant à l'action à effectuer : ");
-				try{
-					valClavier = clavier.nextInt();
-				}catch(Exception e){
-					clavier.next();
-				}
-			}while(valClavier < 1 || valClavier > 10);
-			switch(valClavier){
-			case 1 :
-				break;
-			case 2 :
-				break;
-			case 3 :
-				break;
-			case 4 :
-				break;
-			case 5 :
-				break;
-			case 6 :
-				break;
-			case 7 :
-				break;
-			case 8 :
-				break;
-			case 9 :
-				break;
-			case 10 :
-				break;
-			}
-		}
-	}
-	
 	private static void menuMandat(){
 		int valClavier = 0;
 		while(valClavier != 4){
@@ -634,6 +590,108 @@ public class Console {
 			creerMaison();
 			break;
 		}	
+	}
+	
+	private static void creerAppartement() {
+		String adresse = "";
+		do {
+			System.out.print("\nAdresse de l'appartement : ");
+			try{
+				adresse = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(adresse.equals(""));
+		String exposition = "";
+		do {
+			System.out.println("\nExposition : ");
+			try{
+				exposition = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(exposition.equals(""));
+		double demandPrice = 0;
+		do {
+			System.out.println("\nPrix demandé : ");
+			try{
+				demandPrice = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(demandPrice < 0);
+		
+		Date dateSellingDemand = getDate("demand");
+		Date dateDispo = getDate("dispo");
+		
+		int nbRoom = 0;
+		do {
+			System.out.println("\nNombre de pièces : ");
+			try{
+				nbRoom = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(nbRoom < 0);
+		
+		int floor = 0;
+		do {
+			System.out.println("\nNombre d'étages : ");
+			try{
+				floor = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(floor < 0);
+		
+		double monthlySubs = 0;
+		do {
+			System.out.println("\nCharges mensuelles : ");
+			try{
+				monthlySubs = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(monthlySubs < 0);
+		
+		BienImmobilier b = new Appartement(adresse, exposition, demandPrice, dateSellingDemand, dateDispo, nbRoom, floor, monthlySubs);
+		agence.addBiens(b);
+	}
+	
+	private static Date getDate(String info) {
+		Date dateSellingDemand = null;
+		String message = "";
+		if(info == "demand") {
+			message = "\nDate de demande de vente : ";
+		} else if(info == "dispo"){
+			message = "\nDate de disponibilité : ";
+		}
+		do {
+			System.out.println(message);
+			int year = 0;
+			int month = 0;
+			int day = 0;
+			try{
+				System.out.println("\nAnnée : ");
+				year = clavier.nextInt();
+				System.out.println("\nMois : ");
+				month = clavier.nextInt();
+				System.out.println("\nJour : ");
+				day = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+			dateSellingDemand = new Date(year, month, day);
+		} while(dateSellingDemand.equals(null));
+		return dateSellingDemand;
+	}
+	
+	private static void creerTerrain() {
+		
+	}
+	
+	private static void creerMaison() {
+		
 	}
 	
 	private static void supprimerBien(){
