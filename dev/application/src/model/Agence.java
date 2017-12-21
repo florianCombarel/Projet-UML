@@ -67,6 +67,10 @@ public class Agence {
 	public Personne getPersonne(int codeClient) {
 		return this.clients.get(codeClient);
 	}
+	
+	public BienImmobilier getBien(int codeBien) {
+		return this.biens.get(codeBien);
+	}
 
 	public String getNom() {
 		return nom;
@@ -91,6 +95,8 @@ public class Agence {
 	public void setBiens(HashMap<Integer, BienImmobilier> biens) {
 		this.biens = biens;
 	}
+
+	
 	
 
 }

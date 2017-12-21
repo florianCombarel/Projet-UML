@@ -7,6 +7,7 @@ import java.util.Scanner;
 import model.Agence;
 import model.Mandat;
 import model.PromesseVente;
+import model.Publicite;
 import model.RendezVous;
 import model.Voeu;
 import model.bien_immobilier.Appartement;
@@ -828,14 +829,59 @@ public class Console {
 	}
 	
 	private static void supprimerBien(){
+		System.out.print("\n- Suppression d'un bien immobilier -");
+		int valChoixBien = 0;
+		do{
+			System.out.print("\nNuméro du bien à supprimer : ");
+			try{
+				valChoixBien = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixBien < 0);
 		
+		if(agence.getBien(valChoixBien) != null){
+			agence.removeBiens(valChoixBien);
+		}
 	}
 	
 	private static void afficherListeRendezVous(){
+		System.out.print("\n- Liste des rendez-vous pour un bien -");
+		StringBuilder str = new StringBuilder();
+		int valChoixBien = 0;
+		do{
+			System.out.print("\nNuméro du bien dont on veut afficher la liste : ");
+			try{
+				valChoixBien = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixBien < 0);
 		
+		BienImmobilier p = agence.getBien(valChoixBien);
+		for(Entry<Integer,RendezVous> v : p.getRendezVous().entrySet()){
+			str.append("\n["+v.getKey()+"]    "+v.getValue());
+		}
+		System.out.println(str.toString());
 	}
 	
 	private static void afficherListePublicites(){
+		System.out.print("\n- Liste des publicités pour un bien -");
+		StringBuilder str = new StringBuilder();
+		int valChoixBien = 0;
+		do{
+			System.out.print("\nNuméro du bien dont on veut afficher la liste : ");
+			try{
+				valChoixBien = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixBien < 0);
 		
+		BienImmobilier p = agence.getBien(valChoixBien);
+		for(Entry<Integer,Publicite> v : p.getPublicites().entrySet()){
+			str.append("\n["+v.getKey()+"]    "+v.getValue());
+		}
+		System.out.println(str.toString());
 	}
 }
