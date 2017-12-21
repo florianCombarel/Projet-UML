@@ -25,9 +25,9 @@ public class AgenceTest {
 		BienImmobilier b1 = new Appartement("Toulouse", "Sud", 10000, new Date(), new Date(), 3, 5, 1000);
 		Mandat m = new Mandat(b1,p1, new Date());
 		p1.addMandat(m);
+		b1.setMandat(m);
 		
-		//System.out.println(p1.getMandat(b1));
-		p1.touMandat(b1);
+		System.out.println(p1.getMandat(b1));
 		
 		
 		

@@ -61,13 +61,7 @@ public class Agence {
 	}
 	
 	public void removeBiens(BienImmobilier b) {
-		Integer delete = null;
-		for(HashMap.Entry<Integer, BienImmobilier> entry : this.biens.entrySet()) {
-			if(entry.getValue().equals(b)) {
-				delete = entry.getKey();
-			}
-		}
-		this.biens.remove(delete);
+		this.biens.remove(b);
 	}
 	
 	public Personne getPersonne(int codeClient) {
