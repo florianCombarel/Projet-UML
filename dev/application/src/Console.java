@@ -455,17 +455,89 @@ public class Console {
 			}while(valClavier < 1 || valClavier > 4);
 			switch(valClavier){
 			case 1 :
+				afficherListeMandatsAgence();
 				break;
 			case 2 :
+				ajouterMandat();
 				break;
 			case 3 :
+				supprimerMandat();
 				break;
 			case 4 :
+				menuGeneral();
 				break;
 			}
 		}
 	}
 	
+	private static void supprimerMandat() {
+		System.out.print("\n- Suppression d'un mandat -");
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		int valChoixMandat = 0;
+		do{
+			System.out.print("\nNuméro du mandat : ");
+			try{
+				valChoixMandat = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixMandat < 0);
+		
+		agence.getClients().get(valChoixPersonne).removeMandat(valChoixMandat);
+		
+	}
+
+	private static void ajouterMandat() {
+		// TODO Auto-generated method stub
+		System.out.println("\n- Ajout d'un mandat -");
+		int codeClient = 0;
+		do {
+			System.out.print("\nNuméro du client : ");
+			try{
+				codeClient = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(agence.getClients().containsKey(codeClient));
+		
+		int codeBien = 0;
+		do {
+			System.out.print("\nNuméro du bien : ");
+			try{
+				codeBien = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(agence.getBiens().containsKey(codeBien));
+		
+		Date date = getDate("mandat");
+		
+		Mandat m = new Mandat(agence.getBien(codeBien), agence.getPersonne(codeClient), date);
+		agence.getPersonne(codeClient).addMandat(m);
+	}
+
+	private static void afficherListeMandatsAgence() {
+		// TODO Auto-generated method stub
+		System.out.println("\n- Liste des mandats de toute l'agence -");
+		StringBuilder str = new StringBuilder();
+		for(Entry<Integer, Personne> p : agence.getClients().entrySet()) {
+			int codeClient = p.getKey();
+			for(Entry<Integer, Mandat> m : p.getValue().getBiensEnVente().entrySet()) {
+				str.append("\n["+codeClient+"] ["+m.getKey()+"]    "+m.getValue()+" "+p.getValue());
+			}
+		}
+		System.out.println(str.toString());
+		
+	}
+
 	private static void menuPromesse(){
 		int valClavier = 0;
 		while(valClavier != 4){
@@ -675,6 +747,8 @@ public class Console {
 			message = "\nDate de demande de vente : ";
 		} else if(info == "dispo"){
 			message = "\nDate de disponibilité : ";
+		} else if(info == "mandat") {
+			message = "\nDate de mandat : ";
 		}
 		do {
 			System.out.println(message);
