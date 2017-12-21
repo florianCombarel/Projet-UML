@@ -56,21 +56,16 @@ public class Agence {
 		}
 	}
 	
-	public void removeClients(Personne p) {
-		this.clients.remove(p);
+	public void removeClients(int codeClient) {
+		this.clients.remove(codeClient);
 	}
 	
 	public void removeBiens(BienImmobilier b) {
 		this.biens.remove(b);
 	}
 	
-	public Personne getPersonne(int number) {
-		for(HashMap.Entry<Integer, Personne> entry : this.clients.entrySet()) {
-			if(entry.getKey() == number) {
-				return entry.getValue();
-			}
-		}
-		return null;
+	public Personne getPersonne(int codeClient) {
+		return this.clients.get(codeClient);
 	}
 
 	public String getNom() {

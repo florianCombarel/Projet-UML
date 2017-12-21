@@ -44,5 +44,10 @@ public class Mandat {
 			this.date = date;
 		}
 	}
+	
+	@Override
+	public String toString(){
+		return this.date.toString()+" "+this.bienEnVente;
+	}
 
 }

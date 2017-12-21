@@ -4,6 +4,10 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 
 import model.Agence;
+import model.Mandat;
+import model.PromesseVente;
+import model.RendezVous;
+import model.Voeu;
 import model.personne.Personne;
 import model.personne.PersonneMorale;
 import model.personne.PersonnePhysique;
@@ -89,12 +93,16 @@ public class Console {
 				supprimerClient();
 				break;
 			case 4 :
+				afficherListeMandats();
 				break;
 			case 5 :
+				afficherListePromesses();
 				break;
 			case 6 :
+				afficherListeRDV();
 				break;
 			case 7 :
+				afficherListeVoeux();
 				break;
 			case 8 :
 				break;
@@ -248,7 +256,100 @@ public class Console {
 	}
 	
 	private static void supprimerClient(){
+		System.out.print("\n- Suppression d'un client -");
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client à supprimer : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
 		
+		if(agence.getPersonne(valChoixPersonne) != null){
+			agence.removeClients(valChoixPersonne);
+		}
+	}
+	
+	private static void afficherListeMandats(){
+		System.out.print("\n- Liste des mandats d'un client -");
+		StringBuilder str = new StringBuilder();
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut afficher la liste : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		
+		Personne p = agence.getPersonne(valChoixPersonne);
+		for(Mandat m : p.getbiensEnVente()){
+			str.append("\n"+m);
+		}
+		System.out.println(str.toString());
+	}
+	
+	private static void afficherListePromesses(){
+		System.out.print("\n- Liste des promesses d'un client -");
+		StringBuilder str = new StringBuilder();
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut afficher la liste : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		
+		Personne p = agence.getPersonne(valChoixPersonne);
+		for(PromesseVente pr : p.getbiensAchetes()){
+			str.append("\n"+pr);
+		}
+		System.out.println(str.toString());
+	}
+	
+	private static void afficherListeRDV(){
+		System.out.print("\n- Liste des rdv d'un client -");
+		StringBuilder str = new StringBuilder();
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut afficher la liste : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		
+		Personne p = agence.getPersonne(valChoixPersonne);
+		for(RendezVous r : p.getbiensVisites()){
+			str.append("\n"+r);
+		}
+		System.out.println(str.toString());
+	}
+	
+	private static void afficherListeVoeux(){
+		System.out.print("\n- Liste des voeux d'un client -");
+		StringBuilder str = new StringBuilder();
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut afficher la liste : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		
+		Personne p = agence.getPersonne(valChoixPersonne);
+		for(Voeu v : p.getSetVoeu()){
+			str.append("\n"+v);
+		}
+		System.out.println(str.toString());
 	}
 	
 	private static void menuBienImmobilier(){
