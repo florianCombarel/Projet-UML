@@ -105,6 +105,7 @@ public class Console {
 				afficherListeVoeux();
 				break;
 			case 8 :
+				ajouterVoeu();
 				break;
 			case 9 :
 				break;
@@ -347,9 +348,82 @@ public class Console {
 		
 		Personne p = agence.getPersonne(valChoixPersonne);
 		for(Voeu v : p.getSetVoeu()){
-			str.append("\n"+v);
+			str.append("\n"+v.toString());
 		}
 		System.out.println(str.toString());
+	}
+	
+	private static void ajouterVoeu(){
+		System.out.print("\n- Ajout d'un voeu -");
+		int valChoixPersonne = 0;
+		String typeBien = "";
+		double prixSouhaite = 0;
+		String localisation = "";
+		double surfaceAuSol = 0;
+		int nbPiece = 0;
+		
+		do{
+			System.out.print("\nNuméro du client dont on veut ajouter un voeu : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		Personne p = agence.getPersonne(valChoixPersonne);
+		
+		clavier.nextLine();
+		do{
+			System.out.print("\nType de bien : ");
+			try{
+				typeBien = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(!typeBien.equals("terrain") && !typeBien.equals("maison") && !typeBien.equals("appartement"));
+		
+		if(typeBien.equals("terrain") || typeBien.equals("maison")){
+			do{
+				System.out.print("\nPrix souhaité : ");
+				try{
+					prixSouhaite = clavier.nextDouble();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(prixSouhaite < 0);
+			
+			clavier.nextLine();
+			do{
+				System.out.print("\nLocalisation : ");
+				try{
+					localisation = clavier.nextLine();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(localisation.equals(""));
+			
+			do{
+				System.out.print("\nSurface au sol : ");
+				try{
+					surfaceAuSol = clavier.nextDouble();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(surfaceAuSol < 0);
+		}
+		
+		if(typeBien.equals("appartement") || typeBien.equals("maison")){
+			do{
+				System.out.print("\nNombre de pièce : ");
+				try{
+					nbPiece = clavier.nextInt();
+				}catch(Exception e){
+					clavier.next();
+				}
+			}while(nbPiece < 0);
+		}
+		Voeu v = new Voeu(typeBien, prixSouhaite, localisation, surfaceAuSol, nbPiece, p);
+		p.addVoeu(v);
 	}
 	
 	private static void menuBienImmobilier(){
