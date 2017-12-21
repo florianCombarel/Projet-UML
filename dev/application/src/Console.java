@@ -423,6 +423,7 @@ public class Console {
 			}while(nbPiece < 0);
 		}
 		Voeu v = new Voeu(typeBien, prixSouhaite, localisation, surfaceAuSol, nbPiece, p);
+		System.out.println("Nouveau voeu : "+v);
 		p.addVoeu(v);
 	}
 	

@@ -12,6 +12,7 @@ public class Voeu {
 	private Personne client;
 	
 	public Voeu(String typeBien, double prixSouhaite, String localisation, double surfaceAuSol, int nbPiece, Personne client){
+		this.typeBien = typeBien;
 		switch(typeBien){
 		case "terrain":
 			this.prixSouhaite = Math.abs(prixSouhaite);
