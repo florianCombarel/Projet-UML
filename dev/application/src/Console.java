@@ -118,6 +118,7 @@ public class Console {
 				ajouterVoeu();
 				break;
 			case 9 :
+				supprimerVoeu();
 				break;
 			case 10 :
 				menuGeneral();
@@ -435,6 +436,31 @@ public class Console {
 		}
 		Voeu v = new Voeu(typeBien, prixSouhaite, localisation, surfaceAuSol, nbPiece, p);
 		p.addVoeu(v);
+	}
+	
+	private static void supprimerVoeu(){
+		System.out.print("\n- Supprimer le voeu d'un client -");
+		int valChoixPersonne = 0;
+		int valVoeu = 0;
+		do{
+			System.out.print("\nNuméro du client dont on veut supprimer un voeu : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		Personne p = agence.getPersonne(valChoixPersonne);
+		
+		do{
+			System.out.print("\nNuméro du voeu : ");
+			try{
+				valVoeu = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valVoeu < 0);
+		p.removeVoeu(valVoeu);
 	}
 	
 	private static void menuMandat(){
