@@ -556,12 +556,16 @@ public class Console {
 			}while(valClavier < 1 || valClavier > 4);
 			switch(valClavier){
 			case 1 :
+				afficherListePromessesVentesAgence();
 				break;
 			case 2 :
+				ajouterPromesseVente();
 				break;
 			case 3 :
+				supprimerPromesseVente();
 				break;
 			case 4 :
+				menuGeneral();
 				break;
 			}
 		}
@@ -749,6 +753,8 @@ public class Console {
 			message = "\nDate de disponibilité : ";
 		} else if(info == "mandat") {
 			message = "\nDate de mandat : ";
+		} else if(info == "vente") {
+			message = "\nDate de vente : ";
 		}
 		do {
 			System.out.println(message);
@@ -958,4 +964,116 @@ public class Console {
 		}
 		System.out.println(str.toString());
 	}
+
+	private static void supprimerPromesseVente() {
+		// TODO Auto-generated method stub
+		System.out.print("\n- Suppression d'une promesse -");
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		int valChoixPromesse = 0;
+		do{
+			System.out.print("\nNuméro de la promesse : ");
+			try{
+				valChoixPromesse = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPromesse < 0);
+		
+		agence.getClients().get(valChoixPersonne).removePromesseVente(valChoixPromesse);
+	}
+
+	private static void ajouterPromesseVente() {
+		// TODO Auto-generated method stub
+		System.out.println("\n- Ajout d'une promesse -");
+		double prixVerseVendeur = 0;
+		do {
+			System.out.print("\nPrix à verser à l'agence : ");
+			try{
+				prixVerseVendeur = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(prixVerseVendeur < 0);
+		
+		String adresseNotaire = "";
+		do {
+			System.out.print("\nAdresse du notaire : ");
+			try{
+				adresseNotaire = clavier.nextLine();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(adresseNotaire != "");
+		
+		Date dateVente = getDate("vente");
+		
+		double comissionAgence = 0;
+		do {
+			System.out.print("\nComission de l'agence : ");
+			try{
+				comissionAgence = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(comissionAgence < 0);
+		
+		double fraisVente = 0;
+		do {
+			System.out.print("\nFrais de la vente : ");
+			try{
+				fraisVente = clavier.nextDouble();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(fraisVente < 0);
+		
+		int codeClient = 0;
+		do {
+			System.out.print("\nNuméro du client : ");
+			try{
+				codeClient = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(agence.getClients().containsKey(codeClient));
+		
+		int codeBien = 0;
+		do {
+			System.out.print("\nNuméro du bien : ");
+			try{
+				codeBien = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(agence.getBiens().containsKey(codeBien));
+		
+		PromesseVente pv = new PromesseVente(prixVerseVendeur, adresseNotaire,dateVente,comissionAgence,fraisVente,agence.getBiens().get(codeBien),agence.getClients().get(codeClient));
+		agence.getPersonne(codeClient).addPromesseVente(pv);
+		
+		
+	}
+
+	private static void afficherListePromessesVentesAgence() {
+		// TODO Auto-generated method stub
+		System.out.println("\n- Liste des promesses de toute l'agence -");
+		StringBuilder str = new StringBuilder();
+		for(Entry<Integer, Personne> p : agence.getClients().entrySet()) {
+			int codeClient = p.getKey();
+			for(Entry<Integer, PromesseVente> m : p.getValue().getBiensAchetes().entrySet()) {
+				str.append("\n["+codeClient+"] ["+m.getKey()+"]    "+m.getValue()+" "+p.getValue());
+			}
+		}
+		System.out.println(str.toString());
+	}
+	
+	
+	
 }
