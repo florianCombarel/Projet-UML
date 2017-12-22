@@ -1011,7 +1011,7 @@ public class Console {
 			}catch(Exception e){
 				clavier.next();
 			}
-		}while(adresseNotaire != "");
+		}while(adresseNotaire == "");
 		
 		Date dateVente = getDate("vente");
 		
