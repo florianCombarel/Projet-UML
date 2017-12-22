@@ -37,7 +37,7 @@ public class Console {
 			System.out.println("\n[1] Menu de gestion des clients\n"
 					+ "[2] Menu de gestion des biens immobiliers\n"
 					+ "[3] Menu de gestion des mandats\n"
-					+ "[4] Menu de gestion des promesse\n"
+					+ "[4] Menu de gestion des promesses\n"
 					+ "[5] Menu de gestion des rdv\n"
 					+ "[6] Quitter");
 			do{
@@ -589,15 +589,87 @@ public class Console {
 			}while(valClavier < 1 || valClavier > 4);
 			switch(valClavier){
 			case 1 :
+				afficherListeRDVAgence();
 				break;
 			case 2 :
+				ajouterRDV();
 				break;
 			case 3 :
+				supprimerRDV();
 				break;
 			case 4 :
+				menuGeneral();
 				break;
 			}
 		}
+	}
+
+	private static void supprimerRDV() {
+		// TODO Auto-generated method stub
+		System.out.print("\n- Suppression d'un rendez-vous -");
+		int valChoixPersonne = 0;
+		do{
+			System.out.print("\nNuméro du client : ");
+			try{
+				valChoixPersonne = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixPersonne < 0);
+		int valChoixRDV = 0;
+		do{
+			System.out.print("\nNuméro du rendez-vous : ");
+			try{
+				valChoixRDV = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(valChoixRDV < 0);
+		
+		agence.getClients().get(valChoixPersonne).removeRendezVous(valChoixRDV);
+	}
+
+	private static void ajouterRDV() {
+		// TODO Auto-generated method stub
+		System.out.println("\n- Ajout d'un rendez-vous -");
+		int codeClient = 0;
+		do {
+			System.out.print("\nNuméro du client : ");
+			try{
+				codeClient = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(agence.getClients().containsKey(codeClient));
+		
+		int codeBien = 0;
+		do {
+			System.out.print("\nNuméro du bien : ");
+			try{
+				codeBien = clavier.nextInt();
+			}catch(Exception e){
+				clavier.next();
+			}
+		}while(agence.getBiens().containsKey(codeBien));
+		
+		Date date = getDate("rdv");
+		
+		RendezVous rdv = new RendezVous(date, agence.getClients().get(codeClient), agence.getBiens().get(codeBien));
+		agence.getClients().get(codeClient).addRendezVous(rdv);
+		
+	}
+
+	private static void afficherListeRDVAgence() {
+		// TODO Auto-generated method stub
+		System.out.println("\n- Liste des rendez-vous de toute l'agence -");
+		StringBuilder str = new StringBuilder();
+		for(Entry<Integer, Personne> p : agence.getClients().entrySet()) {
+			int codeClient = p.getKey();
+			for(Entry<Integer, RendezVous> m : p.getValue().getBiensVisites().entrySet()) {
+				str.append("\n["+codeClient+"] ["+m.getKey()+"]    "+m.getValue()+" "+p.getValue());
+			}
+		}
+		System.out.println(str.toString());
 	}
 
 	private static void menuBienImmobilier(){
@@ -755,6 +827,8 @@ public class Console {
 			message = "\nDate de mandat : ";
 		} else if(info == "vente") {
 			message = "\nDate de vente : ";
+		} else if(info == "rdv") {
+			message = "\nDate de rendez-vous : ";
 		}
 		do {
 			System.out.println(message);
